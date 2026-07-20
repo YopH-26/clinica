@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 
 const MenuModal = () => {
   return ReactDOM.createPortal(
@@ -20,25 +21,28 @@ const MenuModal = () => {
             <path d="M9 18l6-6-6-6" />
           </svg>
         </div>
-        <div className="flex flex-col pt-10 mt-10">
-          <button className="text-teal-50 text-xl mb-8 font-semibold">
+        <div className="flex flex-col pt-10 mt-10 items-center">
+          <Link to="/" className="text-teal-50 text-xl mb-8 font-semibold">
+            Inicio
+          </Link>
+          <Link to="/nosotros" className="text-teal-50 text-xl mb-8 font-semibold">
             Nosotros
-          </button>
-          <button className="text-teal-50 text-xl mb-8 font-semibold">
+          </Link>
+          <Link to="/solicitudes" className="text-teal-50 text-xl mb-8 font-semibold">
             Solicitudes
-          </button>
-          <button className="text-teal-50 text-xl mb-8 font-semibold">
+          </Link>
+          <Link to="/doctores" className="text-teal-50 text-xl mb-8 font-semibold">
             Doctores
-          </button>
-          <button className="text-teal-50 text-xl mb-8 font-semibold">
+          </Link>
+          <Link to="/actividad" className="text-teal-50 text-xl mb-8 font-semibold">
             Actividad
-          </button>
-          <button className="text-teal-50 text-xl mb-8 font-semibold">
+          </Link>
+          <Link to="/perfil" className="text-teal-50 text-xl mb-8 font-semibold">
             Perfil
-          </button>
-          <button className="text-teal-50 text-xl mb-8 font-semibold">
+          </Link>
+          <Link to="/login" className="text-teal-50 text-xl mb-8 font-semibold">
             Autenticarse
-          </button>
+          </Link>
         </div>
       </div>
     </div>,

@@ -7,7 +7,7 @@ const Nosotros = () => {
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" />
       <main className="flex-1">
-        <section className="relative h-48 w-full mb-10">
+        <section className="relative h-48 w-full max-w-7xl mb-10 m-auto">
           <img
             src="/img/hero.jpg"
             alt="imagen-hero"

@@ -1,5 +1,6 @@
 import Header from '../componets/Header';
 import Footer from '../componets/Footer';
+import Succes from '../componets/Succes';
 
 const Doctores = () => {
   return (
@@ -32,7 +33,8 @@ const Doctores = () => {
           </div>
         </main>
         <Footer className=" flex-none" />
-      </div>
+      </div>,
+      <Succes/>
     </>
   );
 };

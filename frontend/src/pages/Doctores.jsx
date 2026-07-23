@@ -1,5 +1,7 @@
 import Header from '../componets/Header';
 import Footer from '../componets/Footer';
+import AgregarDoctor from '../componets/AgregarDoctor';
+import DetallesDoctores from '../componets/DetallesDoctores';
 
 const Solocitudes = () => {
   return (
@@ -87,7 +89,7 @@ const Solocitudes = () => {
                 </div>
               </div>
               <div className="flex gap-x-2">
-                <button className="lg:hidden">
+                <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -154,7 +156,7 @@ const Solocitudes = () => {
                 </div>
               </div>
               <div className="flex gap-x-2">
-                <button className="lg:hidden">
+                <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -213,6 +215,8 @@ const Solocitudes = () => {
           </div>
         </main>
         <Footer className=" flex-none" />
+        <AgregarDoctor/>
+        <DetallesDoctores/>
       </div>
     </>
   );

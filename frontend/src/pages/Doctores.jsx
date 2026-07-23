@@ -2,6 +2,7 @@ import Header from '../componets/Header';
 import Footer from '../componets/Footer';
 import AgregarDoctor from '../componets/AgregarDoctor';
 import DetallesDoctores from '../componets/DetallesDoctores';
+import MenuModal from '../componets/MenuModal';
 
 const Solocitudes = () => {
   return (
@@ -217,6 +218,7 @@ const Solocitudes = () => {
         <Footer className=" flex-none" />
         <AgregarDoctor/>
         <DetallesDoctores/>
+        <MenuModal/>
       </div>
     </>
   );

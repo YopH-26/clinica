@@ -7,6 +7,7 @@ import Doctores from './pages/Doctores';
 import Actividad from './pages/Actividad';
 import Perfil from './pages/Perfil';
 import Nosotros from './pages/Nosotros';
+import PerfilClinica from './pages/PerfilClinica';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/doctores" element={<Doctores />} />
           <Route path="/actividad" element={<Actividad />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/perfilclinica" element={<PerfilClinica />} />
         </Routes>
       </BrowserRouter>
     </>

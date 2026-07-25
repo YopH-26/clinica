@@ -2,6 +2,7 @@ import Calendario from '../componets/Calendario';
 import EspecialidadSelect from '../componets/EspecialidadSelect';
 import Footer from '../componets/Footer';
 import Header from '../componets/Header';
+import MenuModal from '../componets/MenuModal';
 
 const Solicitud = () => {
   return (
@@ -74,6 +75,7 @@ const Solicitud = () => {
         </form>
       </div>
       <Footer />
+      <MenuModal/>
     </div>
   );
 };

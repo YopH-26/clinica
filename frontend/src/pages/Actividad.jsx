@@ -1,7 +1,6 @@
 import Header from '../componets/Header';
 import Footer from '../componets/Footer';
-import AgregarDoctor from '../componets/AgregarDoctor';
-import DetallesDoctores from '../componets/DetallesDoctores';
+import GraficoModal from '../componets/GraficoModal';
 import MenuModal from '../componets/MenuModal';
 
 const Actividad = () => {
@@ -74,8 +73,8 @@ const Actividad = () => {
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
+                    width="28"
+                    height="28"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -88,6 +87,7 @@ const Actividad = () => {
                     <line x1="3" y1="20" x2="21" y2="20" />
                   </svg>
                 </button>
+                <GraficoModal />
               </div>
             </div>
             <div className="grid grid-cols-[4fr_2fr_1fr] md:grid-cols-[3fr_3fr_2fr_1fr] lg:grid-cols-[5fr_5fr_3fr_1fr] mb-3 border-b border-teal-400 w-full">
@@ -98,8 +98,8 @@ const Actividad = () => {
                 <button>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
+                    width="28"
+                    height="28"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
@@ -117,9 +117,7 @@ const Actividad = () => {
           </div>
         </main>
         <Footer className=" flex-none" />
-        {/* <AgregarDoctor /> */}
-        {/* <DetallesDoctores /> */}
-        {/* <MenuModal /> */}
+        <MenuModal />
       </div>
     </>
   );

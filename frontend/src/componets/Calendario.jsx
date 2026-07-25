@@ -26,7 +26,7 @@ const Calendario = () => {
             date.toLocaleDateString("es-Es", {weekday: "short"}).charAt(0)
           } 
         />
-        <p className="mt-2">{fechaE}</p>
+        <p className="mt-1">{fechaE}</p>
       </div>
     </div>
   );

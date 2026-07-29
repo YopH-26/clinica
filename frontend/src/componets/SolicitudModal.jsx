@@ -1,62 +1,109 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 
 const SolicitudModal = () => {
   return ReactDOM.createPortal(
-    <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="bg-[rgb(243,248,252)] p-2 rounded-lg shadow-md flex flex-col m-4 md:px-6 max-w-xl">
-          <div className="flex items-center mb-2">
-            <div className="w-12 h-12">
-              <img src="/img/logo.jpg" alt="logo" />
-            </div>
-            <h2 className="uppercase text-xl font-bold text-teal-950">
-              Detalles de la solicitud
-            </h2>
+    // Backdrop + panel
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      role="presentation"
+      aria-hipen="false"
+    >
+      {/* Backdrop semitransparente */}
+      <div
+        className="absolute inset-0 bg-black/50"
+        aria-hipen="true"
+      />
+
+      {/* Panel del modal */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Detalles de la solicitud"
+        className="relative z-10 w-full max-w-xl mx-4 md:mx-0 bg-[rgb(243,248,252)] rounded-lg shadow-md overflow-hipen py-2"
+      >
+        {/* Header del modal */}
+        <header className="flex items-center gap-1 pl-2">
+          <div className="w-12 h-12 flex-shrink-0">
+            <img
+              src="/img/logo.jpg"
+              alt="Logotipo de la clínica"
+              className="w-full h-full object-cover rounded"
+            />
           </div>
-          <div className="md:flex md:justify-between">
-            <div>
-              <h3 className="font-bold text-xl">Paciente</h3>
-              <h4 className="text-lg mb-1">Emeregildo Fonseca Fonseca</h4>
-              <h3 className="font-bold text-xl">Correo</h3>
-              <h4 className="text-lg mb-1">correo@correo.com</h4>
-              <h3 className="font-bold text-xl">Teléfono</h3>
-              <h4 className="text-lg mb-1">+53 55555555</h4>
+
+          <h2 className="uppercase text-xl font-bold text-teal-950">
+            Detalles de la solicitud
+          </h2>
+        </header>
+
+        {/* Contenido principal */}
+        <div className="px-4 pt-2 md:p-6">
+          <section className="md:flex md:justify-between md:gap-6">
+            <div className="flex-1">
+                <p className="font-bold text-lg">Paciente</p>
+                <p className="text-lg">Emeregildo Fonseca Fonseca</p>
+                <p className="font-bold text-lg">Correo</p>
+                <p className="text-lg">correo@correo.com</p>
+                <p className="font-bold text-lg">Teléfono</p>
+                <p className="text-lg">+53 55555555</p>
             </div>
-            <div>
-              <h3 className="font-bold text-xl">Fecha de solicitud</h3>
-              <h4 className="text-lg mb-1">12/5/2026</h4>
-              <h3 className="font-bold text-xl">Fecha preferida</h3>
-              <h4 className="text-lg mb-1">1/6/2026</h4>
-              <h3 className="font-bold text-xl">Especialidad</h3>
-              <h4 className="text-lg mb-1">Cardiología</h4>
+
+            <div className="flex-1 md:mt-0">
+                <p className="font-bold text-lg">Fecha de solicitud</p>
+                <p className="text-lg">12/5/2026</p>
+                <p className="font-bold text-lg">Fecha preferida</p>
+                <p className="text-lg">1/6/2026</p>
+                <p className="font-bold text-lg">Especialidad</p>
+                <p className="text-lg">Cardiología</p>
             </div>
-          </div>
-          <h3 className="font-bold text-xl">Motivo</h3>
-          <div className="w-full h-20 lg:h-28 overflow-auto border border-teal-700 rounded-lg px-2 py-1 bg-white mb-1">
-            <h4 className="text-lg">
-              Se me entristece el alma y se me acongoja el corazón cada vez que
-              en la corriente pienso. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Architecto dolorem illo eum ea velit quod libero
-              fugit. Praesentium, saepe. Quisquam labore illo ad incidunt
-              assumenda atque debitis consequatur deleniti nihil?
-            </h4>
-          </div>
-          <h3 className="font-bold text-xl">Historial de citas</h3>
-          <h4 className="text-lg mb-1">1/5/2026 - Urólogo</h4>
-          <h4 className="text-lg mb-1">1/5/2026 - Psiquiatra</h4>
-          <div className="flex justify-around my-2">
-            <button className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-all">
+          </section>
+
+          <section>
+            <h3 className="font-bold text-xl mb-2">Motivo</h3>
+            <div className="w-full h-20 lg:h-28 overflow-auto border border-teal-700 rounded-lg px-3 py-2 bg-white">
+              <p className="text-lg leading-relaxed">
+                Se me entristece el alma y se me acongoja el corazón cada vez que
+                en la corriente pienso. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Architecto dolorem illo eum ea velit quod libero
+                fugit. Praesentium, saepe. Quisquam labore illo ad incidunt
+                assumenda atque debitis consequatur deleniti nihil?
+              </p>
+            </div>
+          </section>
+
+          {/* Historial de citas */}
+          <section>
+            <h3 className="font-bold text-xl mx-1">Historial de citas</h3>
+            <ul className="list-none">
+              <li className="text-lg">1/5/2026 - Urólogo</li>
+              <li className="text-lg">1/5/2026 - Psiquiatra</li>
+            </ul>
+          </section>
+
+          {/* Acciones */}
+          <footer className="flex justify-around gap-4 mt-2">
+            <button
+              type="button"
+              className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-red-800"
+              // implementar
+            >
               Atrás
             </button>
-            <button className="bg-blue-600 rounded-full px-3 py-1 text-white uppercase hover:scale-105 transition-all">
+
+            <button
+              type="button"
+              className="bg-blue-600 rounded-full px-3 py-1 text-white uppercase hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900"
+              // implementar acción
+            >
               Planificar
             </button>
-          </div>
+          </footer>
         </div>
       </div>
-    </>,
-    document.body,
+    </div>,
+    document.body
   );
 };
 
 export default SolicitudModal;
+

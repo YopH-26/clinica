@@ -1,47 +1,90 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+
+//Propósito: Mostrar información ampliada de los doctores
 
 const DetallesDoctores = () => {
   return ReactDOM.createPortal(
-    <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="bg-[rgb(243,248,252)] p-2 rounded-lg shadow-md flex flex-col m-4 md:px-6 w-5/6 max-w-xl">
-          <div className="flex items-center mb-2">
-            <div className="w-12 h-12">
-              <img src="/img/logo.jpg" alt="logo" />
-            </div>
-            <h2 className="uppercase text-xl font-bold text-teal-950">
-              Detalles del doctor
-            </h2>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      role="presentation"
+      aria-hidden="false"
+    >
+      {/* Backdrop semitransparente */}
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
+
+      {/* Panel del modal */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Detalles del doctor"
+        className="relative z-10 w-5/6 max-w-xl mx-4 md:mx-0 bg-[rgb(243,248,252)] p-2 rounded-lg shadow-md flex flex-col md:px-6"
+      >
+        {/* Header */}
+        <header className="flex items-center mb-2">
+          <div className="w-12 h-12 flex-shrink-0">
+            <img
+              src="/img/logo.jpg"
+              alt="Logotipo de la clínica"
+              className="w-full h-full object-cover rounded"
+            />
           </div>
-          <div className="md:flex md:justify-between">
+
+          <h2 className="uppercase text-xl font-bold text-teal-950 ml-3">
+            Detalles del doctor
+          </h2>
+        </header>
+
+        {/* Contenido */}
+        <div className="p-3">
+          <section className="md:flex md:justify-between md:gap-6">
             <div className="flex-1">
-              <h3 className="font-bold text-xl">Nombre</h3>
-              <h4 className="text-lg mb-1">Emeregildo Fonseca Fonseca</h4>
-              <h3 className="font-bold text-xl">Correo</h3>
-              <h4 className="text-lg mb-1">correo@correo.com</h4>
-              <h3 className="font-bold text-xl">Teléfono</h3>
-              <h4 className="text-lg mb-1">+53 55555555</h4>
+                <p className="font-bold text-xl">Nombre</p>
+                <p className="text-lg mb-1">Emeregildo Fonseca Fonseca</p>
+                <p className="font-bold text-xl">Correo</p>
+                <p className="text-lg mb-1">correo@correo.com</p>
+                <p className="font-bold text-xl">Teléfono</p>
+                <p className="text-lg mb-1">+53 55555555</p>
             </div>
-            <div className="flex-1 max-w-44">
-              <h3 className="font-bold text-xl">Especialidad</h3>
-              <h4 className="text-lg mb-1">Cardiología</h4>
-              <h3 className="font-bold text-xl">Usuario</h3>
-              <h4 className="text-lg mb-1">use_1</h4>
+
+            <div className="flex-1 md:mt-0 max-w-[11rem]">
+                <p className="font-bold text-xl">Usuario</p>
+                <p className="text-lg mb-1">use_1</p>
+              <p className="font-bold text-xl lg:hidden">Público</p>
+              <div className="items-center cursor-pointer w-9 lg:hidden">
+                <label
+                  className="flex items-center"
+                  aria-label="Visibilidad pública del doctor"
+                >
+                  <input
+                    type="checkbox"
+                    aria-checked="true"
+                    className="sr-only"
+                    aria-label="Mostrar doctor públicamente"
+                    defaultChecked
+                  />
+                  <div className="w-9 h-5 bg-gray-300 rounded-full transition-colors">
+                    <div className="w-4 h-4 bg-white rounded-full shadow transform transition-transform translate-x-4 translate-y-0.5" />
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
+          </section>
+
+          {/* Acciones */}
           <div className="flex justify-around my-2">
-            <button className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-all">
+            <button
+              type="button"
+              className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-red-800"
+            >
               Atrás
-            </button>
-            <button className="bg-blue-600 rounded-full px-3 py-1 text-white uppercase hover:scale-105 transition-all">
-              Planificar
             </button>
           </div>
         </div>
       </div>
-    </>,
+    </div>,
     document.body,
   );
 };
 
 export default DetallesDoctores;
+

@@ -1,53 +1,130 @@
-import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 
 const MenuModal = () => {
   return ReactDOM.createPortal(
-    <div className="fixed inset-0 lg:hidden">
-      <div className="fixed min-h-screen w-4/5 right-0 bg-teal-700 md:w-80">
-        <div className="fixed right-0 m-5">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="36"
-            height="36"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-teal-100"
+    <div className="fixed inset-0 z-50 lg:hidden" aria-hidden={false}>
+      {/* Backdrop semitransparente */}
+      <div
+        className="absolute inset-0 bg-gray-100/10"
+        aria-hidden="true"
+      />
+
+      {/* Panel deslizable */}
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú principal"
+        id="mobile-menu"
+        className="relative ml-auto w-4/5 h-full md:w-80 bg-teal-700 text-teal-50 shadow-xl overflow-auto"
+      >
+        <div className="absolute top-4 right-4">
+          <button
+            type="button"
+            aria-label="Cerrar menú"
+            className="p-2 rounded-full hover:bg-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
           >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-teal-100"
+              aria-hidden="true"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
-        <div className="flex flex-col pt-10 mt-10 items-center">
-          <Link to="/" className="text-teal-50 text-xl mb-8 font-semibold">
-            Inicio
-          </Link>
-          <Link to="/nosotros" className="text-teal-50 text-xl mb-8 font-semibold">
-            Nosotros
-          </Link>
-          <Link to="/solicitudes" className="text-teal-50 text-xl mb-8 font-semibold">
-            Solicitudes
-          </Link>
-          <Link to="/doctores" className="text-teal-50 text-xl mb-8 font-semibold">
-            Doctores
-          </Link>
-          <Link to="/actividad" className="text-teal-50 text-xl mb-8 font-semibold">
-            Actividad
-          </Link>
-          <Link to="/perfil" className="text-teal-50 text-xl mb-8 font-semibold">
-            Perfil
-          </Link>
-          <Link to="/login" className="text-teal-50 text-xl mb-8 font-semibold">
-            Autenticarse
-          </Link>
-        </div>
-      </div>
+
+        {/* Contenido del menú */}
+        <nav className="pt-16 pb-8 px-6">
+          <ul
+            className="flex flex-col items-center gap-6"
+            role="menu"
+            aria-label="Navegación principal"
+          >
+            <li role="none">
+              <Link
+                to="/"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Inicio
+              </Link>
+            </li>
+
+            <li role="none">
+              <Link
+                to="/nosotros"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Nosotros
+              </Link>
+            </li>
+
+            <li role="none">
+              <Link
+                to="/solicitudes"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Solicitudes
+              </Link>
+            </li>
+
+            <li role="none">
+              <Link
+                to="/doctores"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Doctores
+              </Link>
+            </li>
+
+            <li role="none">
+              <Link
+                to="/actividad"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Actividad
+              </Link>
+            </li>
+
+            <li role="none">
+              <Link
+                to="/perfil"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Perfil
+              </Link>
+            </li>
+
+            <li role="none">
+              <Link
+                to="/login"
+                role="menuitem"
+                className="text-teal-50 text-xl font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 rounded-lg p-1"
+              >
+                Autenticarse
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </aside>
     </div>,
     document.body,
   );
 };
 
 export default MenuModal;
+

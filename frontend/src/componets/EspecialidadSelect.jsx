@@ -11,7 +11,7 @@ const EspecialidadSelect = () => {
 
   return (
     <>
-      <div className="border border-teal-950 rounded-md mb-1 w-full focus:outline-none">
+      <div className="border border-teal-950 rounded-md w-full focus:outline-none">
         <Select options={opciones} noOptionsMessage={() => "Especialidad no disponible"}/>
       </div>
     </>

@@ -2,10 +2,23 @@ import Header from '../componets/Header';
 import Footer from '../componets/Footer';
 import { Link } from 'react-router-dom';
 import MenuModal from '../componets/MenuModal';
+import { useState, useEffect } from 'react';
 
 //Propósito: Modificar datos personales
 
 const Perfil = () => {
+
+  const [nombreDoctor, setNombreDoctor] = useState('Dr. Agapito Resóplez');
+  const [correoDoctor, setCorreoDoctor] = useState('algo@algo.algo');
+  const [telefonoDoctor, setTelefonoDoctor] = useState('+5355555555');
+  const [imagenDoctor, setImagenDoctor] = useState();
+  console.log(nombreDoctor, correoDoctor, telefonoDoctor, imagenDoctor);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('enviandooooo');
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" />
@@ -27,13 +40,11 @@ const Perfil = () => {
         </h2>
 
         <form
+          onSubmit={handleSubmit}
           action=""
           className="flex flex-col items-center w-full"
           role="form"
           aria-label="Formulario de edición de perfil"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
         >
           <div className="lg:flex lg:flex-row">
             {/* Avatar */}
@@ -99,6 +110,8 @@ const Perfil = () => {
                   defaultValue="Agapito Resóplez"
                   required
                   autoComplete="name"
+                  value={nombreDoctor}
+                  onChange={(e) => setNombreDoctor(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
 
@@ -112,6 +125,8 @@ const Perfil = () => {
                   defaultValue="algo@algo.com"
                   required
                   autoComplete="email"
+                  value={correoDoctor}
+                  onChange={(e) => setCorreoDoctor(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
 
@@ -125,6 +140,8 @@ const Perfil = () => {
                   defaultValue="55555555"
                   required
                   autoComplete="tel"
+                  value={telefonoDoctor}
+                  onChange={(e) => setTelefonoDoctor(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
               </div>
@@ -174,7 +191,7 @@ const Perfil = () => {
                 </button>
 
                 {/* Formulario de cambio de contraseña */}
-                <form className="flex flex-col">
+                <div className="flex flex-col">
                   <label htmlFor="actual" className="text-lg font-semibold">
                     Actual
                   </label>
@@ -206,7 +223,7 @@ const Perfil = () => {
                   >
                     Cambiar
                   </button>
-                </form>
+                </div>
               </div>
             </div>
           </div>

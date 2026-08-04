@@ -1,8 +1,41 @@
 import ReactDOM from 'react-dom';
 import Calendario from '../componets/Calendario';
 import EspecialidadSelect from '../componets/EspecialidadSelect';
+import { useState, useEffect } from 'react';
 
 const Planificar = () => {
+
+    const [nombreSolicitud, setNombreSolicitud] = useState('');
+    const [correoSolicitud, setCorreoSolicitud] = useState('');
+    const [telefonoSolicitud, setTelefonoSolicitud] = useState('');
+    const [motivoSolicitud, setMotivoSolicitud] = useState('');
+    const [notaSolicitud, setNotaSolicitud] = useState('');
+    const [especialidadSolicitud, setEspecialidadSolicitud] = useState('');
+    const [fechaSolicitud, setFechaSolicitud] = useState(new Date());
+    const [resetTrigger, setResetTrigger] = useState(0);
+    console.log(
+      nombreSolicitud,
+      correoSolicitud,
+      telefonoSolicitud,
+      motivoSolicitud,
+      notaSolicitud,
+      especialidadSolicitud.value,
+      fechaSolicitud.toLocaleDateString('es-ES'),
+    );
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('enviando');
+      setNombreSolicitud('');
+      setCorreoSolicitud('');
+      setTelefonoSolicitud('');
+      setMotivoSolicitud('');
+      setNotaSolicitud(''); 
+      setEspecialidadSolicitud('');
+      setFechaSolicitud(new Date());
+      setResetTrigger((prev) => prev + 1);
+    };
+
   return ReactDOM.createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
@@ -10,10 +43,7 @@ const Planificar = () => {
       aria-hidden="false"
     >
       {/* Backdrop semitransparente */}
-      <div
-        className="absolute inset-0 bg-black/50"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
       {/* Panel del modal */}
       <div
@@ -39,6 +69,7 @@ const Planificar = () => {
 
         {/* Formulario */}
         <form
+          onSubmit={handleSubmit}
           className="flex flex-col items-center w-full"
         >
           <div className="w-full md:flex md:gap-20 md:justify-between md:px-10">
@@ -55,6 +86,8 @@ const Planificar = () => {
                 autoComplete="name"
                 className="border border-teal-950 rounded-md mb-1 px-2 py-1 w-full focus:outline-none"
                 required
+                value={nombreSolicitud}
+                onChange={(e) => setNombreSolicitud(e.target.value)}
               />
 
               <input
@@ -65,6 +98,8 @@ const Planificar = () => {
                 autoComplete="email"
                 className="border border-teal-950 rounded-md mb-1 px-2 py-1 w-full focus:outline-none"
                 required
+                value={correoSolicitud}
+                onChange={(e) => setCorreoSolicitud(e.target.value)}
               />
 
               <input
@@ -73,6 +108,8 @@ const Planificar = () => {
                 name="telefono"
                 placeholder="+53 5xxxx xxxx"
                 autoComplete="tel"
+                value={telefonoSolicitud}
+                onChange={(e) => setTelefonoSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md mb-1 px-2 py-1 w-full focus:outline-none"
               />
 
@@ -82,45 +119,51 @@ const Planificar = () => {
               >
                 Especialidad o Servicio
               </label>
-              <EspecialidadSelect id="especialidad" name="especialidad" />
+              <EspecialidadSelect
+                id="especialidad"
+                name="especialidad"
+                value={especialidadSolicitud}
+                onChange={setEspecialidadSolicitud}
+              />
 
-              <label
-                htmlFor="motivo"
-                className="font-semibold text-lg block"
-              >
+              <label htmlFor="motivo" className="font-semibold text-lg block">
                 Motivo de la Cita
               </label>
               <textarea
                 name="motivo"
                 id="motivo"
                 placeholder="Describe brevemente el motivo"
+                value={motivoSolicitud}
+                onChange={(e) => setMotivoSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md px-2 w-full focus:outline-none h-10 md:h-12 resize-none"
               />
 
-              <label
-                htmlFor="nota"
-                className="font-semibold text-lg block"
-              >
+              <label htmlFor="nota" className="font-semibold text-lg block">
                 Anotación
               </label>
               <textarea
                 name="nota"
                 id="nota"
                 placeholder="Notas internas (opcional)"
+                value={notaSolicitud}
+                onChange={(e) => setNotaSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md px-2 w-full focus:outline-none h-10 md:h-12 resize-none"
               />
             </div>
 
             <div className="flex flex-col items-center">
-              <label
-                htmlFor="fecha"
-                className="font-semibold text-lg"
-              >
+              <label htmlFor="fecha" className="font-semibold text-lg">
                 Fecha de la cita
               </label>
 
               <div id="fecha" className="mt-2">
-                <Calendario />
+                <Calendario
+                  id="fecha"
+                  name="fecha"
+                  value={fechaSolicitud}
+                  onChange={setFechaSolicitud}
+                  resetTrigger={resetTrigger}
+                />
               </div>
             </div>
           </div>

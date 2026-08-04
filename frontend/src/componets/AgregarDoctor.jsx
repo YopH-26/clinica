@@ -1,8 +1,24 @@
 import ReactDOM from 'react-dom';
+import { useState, useEffect } from 'react';
 
 //Propósito: Formulario de agregar doctor
 
 const AgregarDoctor = () => {
+  const [nombreDoctor, setNombreDoctor] = useState('');
+  const [correoDoctor, setCorreoDoctor] = useState('');
+  const [telefonoDoctor, setTelefonoDoctor] = useState('');
+  const [especialidadDoctor, setEspecialidadDoctor] = useState('');
+  console.log(nombreDoctor, correoDoctor, telefonoDoctor, especialidadDoctor);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('enviandooooo');
+    setNombreDoctor('');
+    setCorreoDoctor('');
+    setTelefonoDoctor('');
+    setEspecialidadDoctor('');
+  };
+
   return ReactDOM.createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
@@ -10,13 +26,11 @@ const AgregarDoctor = () => {
       aria-hidden="false"
     >
       {/* Backdrop semitransparente */}
-      <div
-        className="absolute inset-0 bg-black/50"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
       {/* Panel del modal */}
-      <div
+      <form
+        onSubmit={handleSubmit}
         role="dialog"
         aria-modal="true"
         aria-label="Agregar doctor"
@@ -40,17 +54,19 @@ const AgregarDoctor = () => {
         {/* Contenido */}
         <div className="md:flex md:gap-6 p-3">
           <section className="md:flex-1">
-            <label htmlFor="nombre" className="font-bold text-xl block">
+            <label htmlFor="nombreDoctor" className="font-bold text-xl block">
               Nombre
             </label>
             <input
-              id="nombre"
-              name="nombre"
+              id="nombreDoctor"
+              name="nombreDoctor"
               type="text"
               placeholder="Nombre completo"
               autoComplete="name"
               className="border border-gray-400 rounded-md outline-none px-2 py-1 w-5/6 mb-2"
               required
+              value={nombreDoctor}
+              onChange={(e) => setNombreDoctor(e.target.value)}
             />
 
             <label htmlFor="correo" className="font-bold text-xl block">
@@ -64,6 +80,8 @@ const AgregarDoctor = () => {
               autoComplete="email"
               className="border border-gray-400 rounded-md outline-none px-2 py-1 w-5/6 mb-2"
               required
+              value={correoDoctor}
+              onChange={(e) => setCorreoDoctor(e.target.value)}
             />
 
             <label htmlFor="telefono" className="font-bold text-xl block">
@@ -75,6 +93,8 @@ const AgregarDoctor = () => {
               type="tel"
               placeholder="+53 5xxxx xxxx"
               autoComplete="tel"
+              value={telefonoDoctor}
+              onChange={(e) => setTelefonoDoctor(e.target.value)}
               className="border border-gray-400 rounded-md outline-none px-2 py-1 w-5/6 mb-2"
             />
           </section>
@@ -88,6 +108,8 @@ const AgregarDoctor = () => {
               name="especialidad"
               type="text"
               placeholder="Ej. Cardiología"
+              value={especialidadDoctor}
+              onChange={(e)=>setEspecialidadDoctor(e.target.value)}
               className="border border-gray-400 rounded-md outline-none px-2 py-1 w-5/6 mb-2"
             />
 
@@ -111,13 +133,13 @@ const AgregarDoctor = () => {
           </button>
 
           <button
-            type="button"
+            type="submit"
             className="bg-blue-600 rounded-full px-3 py-1 text-white uppercase hover:scale-105 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900"
           >
             Agregar
           </button>
         </footer>
-      </div>
+      </form>
     </div>,
     document.body,
   );

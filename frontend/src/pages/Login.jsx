@@ -1,10 +1,23 @@
 import Footer from '../componets/Footer';
 import Header from '../componets/Header';
 import MenuModal from '../componets/MenuModal';
+import { useState, useEffect } from 'react';
 
 //Propósito: Inicio de sesión.
 
 const Login = () => {
+
+  const [usuario, setUsuario] = useState('');
+  const [contrasenna, setContrasenna] = useState('');
+  console.log(usuario, contrasenna);
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    console.log('enviando');
+    setUsuario('');
+    setContrasenna('');
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -18,7 +31,6 @@ const Login = () => {
             src="/img/logo.jpg"
             alt="Logotipo de la clínica"
             className="w-full h-full object-cover"
-            loading="lazy"
           />
         </figure>
 
@@ -27,6 +39,7 @@ const Login = () => {
         </h2>
 
         <form
+          onSubmit={handleSubmit}
           action=""
           className="w-full px-8 mt-3 max-w-lg flex flex-col items-center rounded-2xl shadow-md shadow-gray-300 bg-white py-6"
           role="form"
@@ -46,6 +59,8 @@ const Login = () => {
                 name="usuario"
                 autoComplete="username"
                 required
+                value={usuario}
+                onChange={(e) => setUsuario(e.target.value)}
                 className="peer w-full text-xl focus:outline-none px-1 order-1 bg-transparent"
                 aria-label="Usuario"
               />
@@ -81,6 +96,8 @@ const Login = () => {
                 id="contrasenna"
                 name="contrasenna"
                 required
+                value={contrasenna}
+                onChange={(e) => setContrasenna(e.target.value)}
                 className="peer w-full text-xl focus:outline-none px-1 order-1 bg-transparent"
                 aria-label="Contraseña"
               />

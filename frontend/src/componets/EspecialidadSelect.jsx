@@ -1,4 +1,4 @@
-import Select from "react-select";
+import Select from 'react-select';
 
 const opciones = [
   { value: 'cardiologia', label: 'Cardiología' },
@@ -7,15 +7,20 @@ const opciones = [
   { value: 'psiquiatria', label: 'Psiquiatría' },
 ];
 
-const EspecialidadSelect = () => {
+const EspecialidadSelect = ({value, onChange}) => {
 
   return (
     <>
       <div className="border border-teal-950 rounded-md w-full focus:outline-none">
-        <Select options={opciones} noOptionsMessage={() => "Especialidad no disponible"}/>
+        <Select
+          options={opciones}
+          noOptionsMessage={() => 'Especialidad no disponible'}
+          value={value}
+          onChange={onChange}
+        />
       </div>
     </>
   );
-}
+};
 
-export default EspecialidadSelect
+export default EspecialidadSelect;

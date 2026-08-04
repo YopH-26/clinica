@@ -1,11 +1,26 @@
-import Header from "../componets/Header";
-import Footer from "../componets/Footer";
-import { Link } from "react-router-dom";
-import MenuModal from "../componets/MenuModal";
+import Header from '../componets/Header';
+import Footer from '../componets/Footer';
+import { Link } from 'react-router-dom';
+import MenuModal from '../componets/MenuModal';
+import { useState, useEffect } from 'react';
 
 //Propósito: Landing page de la página
 
 const Home = () => {
+
+  const [nombreComentario, setNombreComentario] = useState('');
+  const [correoComentario, setCorreoComentario] = useState('');
+  const [opinionComentario, setOpinionComentario] = useState('');
+  console.log(opinionComentario,nombreComentario,correoComentario)
+
+const handleSubmit = (e)=> {
+  e.preventDefault();
+  setNombreComentario('');
+  setCorreoComentario('');
+  setOpinionComentario('');
+  console.log('enviando')
+}
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" />
@@ -54,6 +69,7 @@ const Home = () => {
 
         {/* Formulario de opinión */}
         <form
+          onSubmit={handleSubmit}
           action=""
           className="mt-2 lg:w-full max-w-4xl"
           aria-label="Formulario de opinión"
@@ -72,6 +88,8 @@ const Home = () => {
                     name="nombre"
                     placeholder="Nombre"
                     autoComplete="name"
+                    value={nombreComentario}
+                    onChange={(e) => setNombreComentario(e.target.value)}
                     className="peer w-full border-b-2 border-teal-800 px-2 text-lg placeholder-transparent focus:border-teal-300 focus:outline-none bg-transparent"
                   />
                   <label
@@ -89,6 +107,8 @@ const Home = () => {
                     name="correo"
                     placeholder="Correo"
                     autoComplete="email"
+                    value={correoComentario}
+                    onChange={(e) => setCorreoComentario(e.target.value)}
                     className="peer w-full border-b-2 border-teal-800 px-2 text-lg placeholder-transparent focus:border-teal-300 focus:outline-none bg-transparent"
                   />
                   <label
@@ -105,6 +125,8 @@ const Home = () => {
                   id="opinion"
                   name="opinion"
                   placeholder="Tu opinión"
+                  value={opinionComentario}
+                  onChange={(e) => setOpinionComentario(e.target.value)}
                   className="peer h-13 lg:h-24 w-full border-b-2 border-teal-800 px-2 text-base placeholder-transparent focus:border-teal-300 focus:outline-none bg-transparent resize-none"
                 />
                 <label
@@ -135,4 +157,3 @@ const Home = () => {
 };
 
 export default Home;
-

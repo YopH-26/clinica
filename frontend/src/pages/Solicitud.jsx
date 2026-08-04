@@ -3,10 +3,33 @@ import EspecialidadSelect from '../componets/EspecialidadSelect';
 import Footer from '../componets/Footer';
 import Header from '../componets/Header';
 import MenuModal from '../componets/MenuModal';
+import { useState, useEffect } from 'react';
 
 //Propósito: Solicitar cita
 
 const Solicitud = () => {
+
+  const [nombreSolicitud, setNombreSolicitud] = useState('');
+  const [correoSolicitud, setCorreoSolicitud] = useState('');
+  const [telefonoSolicitud, setTelefonoSolicitud] = useState('');
+  const [motivoSolicitud, setMotivoSolicitud] = useState('');
+  const [especialidadSolicitud, setEspecialidadSolicitud] = useState('');
+  const [fechaSolicitud, setFechaSolicitud] = useState(new Date());
+  const [resetTrigger, setResetTrigger] =useState(0);
+  console.log(nombreSolicitud,correoSolicitud,telefonoSolicitud,motivoSolicitud,especialidadSolicitud.value, fechaSolicitud.toLocaleDateString('es-ES'))
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    console.log('enviando')
+    setNombreSolicitud('');
+    setCorreoSolicitud('');
+    setTelefonoSolicitud('');
+    setMotivoSolicitud('');
+    setEspecialidadSolicitud('');
+    setFechaSolicitud(new Date());
+    setResetTrigger(prev => prev + 1)
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -29,6 +52,7 @@ const Solicitud = () => {
 
         {/* Formulario de solicitud */}
         <form
+          onSubmit={handleSubmit}
           className="flex flex-col items-center border w-full rounded-2xl shadow-md shadow-gray-300 bg-white px-4 py-6 mt-2 max-w-4xl"
           aria-label="Formulario de solicitud de cita"
         >
@@ -47,6 +71,8 @@ const Solicitud = () => {
                 name="nombre"
                 placeholder="Nombre y Apellidos"
                 autoComplete="name"
+                value={nombreSolicitud}
+                onChange={(e) => setNombreSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md mb-2 p-1 w-full focus:outline-none"
               />
 
@@ -56,6 +82,8 @@ const Solicitud = () => {
                 name="correo"
                 placeholder="Correo Electrónico"
                 autoComplete="email"
+                value={correoSolicitud}
+                onChange={(e) => setCorreoSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md mb-2 p-1 w-full focus:outline-none"
               />
 
@@ -65,6 +93,8 @@ const Solicitud = () => {
                 name="telefono"
                 placeholder="+53 5xxxx xxxx"
                 autoComplete="tel"
+                value={telefonoSolicitud}
+                onChange={(e) => setTelefonoSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md mb-2 p-1 w-full focus:outline-none"
               />
 
@@ -74,7 +104,12 @@ const Solicitud = () => {
               >
                 Especialidad o Servicio
               </label>
-              <EspecialidadSelect id="especialidad" name="especialidad" />
+              <EspecialidadSelect
+                id="especialidad"
+                name="especialidad"
+                value={especialidadSolicitud}
+                onChange={setEspecialidadSolicitud}
+              />
 
               <label
                 htmlFor="motivo"
@@ -86,6 +121,8 @@ const Solicitud = () => {
                 id="motivo"
                 name="motivo"
                 placeholder="Describa lo que le sucede ..."
+                value={motivoSolicitud}
+                onChange={(e) => setMotivoSolicitud(e.target.value)}
                 className="border border-teal-950 rounded-md mb-2 p-1 w-full focus:outline-none h-24 resize-none"
               />
             </div>
@@ -97,7 +134,13 @@ const Solicitud = () => {
               >
                 Fecha Preferida
               </label>
-              <Calendario id="fecha-preferida" name="fecha_preferida" />
+              <Calendario
+                id="fecha-preferida"
+                name="fecha_preferida"
+                value={fechaSolicitud}
+                onChange={setFechaSolicitud}
+                resetTrigger={resetTrigger}
+              />
             </div>
           </div>
 

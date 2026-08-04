@@ -2,10 +2,50 @@ import Header from '../componets/Header';
 import Footer from '../componets/Footer';
 import { Link } from 'react-router-dom';
 import MenuModal from '../componets/MenuModal';
+import { useState, useEffect } from 'react';
 
 //  * Propósito: Modificar datos de la clínica
 
 const PerfilClinica = () => {
+  const [nombreClinica, setNombreClinica] = useState('Clinica');
+  const [correoClinica, setCorreoClinica] = useState('algo@algo.algo');
+  const [telefonoClinica, setTelefonoClinica] = useState('+5355555555');
+  const [ubicacionClinica, setUbicacionClinica] = useState('Calle 5ta #10');
+  const [diasClinica, setDiasClinica] =useState([]);
+  const [aperturaClinica, setAperturaClinica] = useState('08:00');
+  const [cierreClinica, setCierreClinica] = useState('16:00');
+  const [imagenClinica, setImagenClinica] = useState();
+  console.log(
+    nombreClinica,
+    correoClinica,
+    telefonoClinica,
+    imagenClinica,
+    ubicacionClinica,
+    aperturaClinica,
+    cierreClinica,
+    diasClinica,
+  );
+
+  const diaSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+
+  const toggleDia = (dia) => {
+    setDiasClinica(prev => {
+      const indice = prev.indexOf(dia);
+      if(indice !== -1){
+        const nuevoArreglo = [...prev];
+        nuevoArreglo.splice(indice, 1);
+        return nuevoArreglo;
+      }else{
+        return [...prev, dia];
+      }
+    })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('enviandooooo');
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" />
@@ -27,13 +67,11 @@ const PerfilClinica = () => {
         </h2>
 
         <form
+          onSubmit={handleSubmit}
           action=""
           className="flex flex-col items-center"
           role="form"
           aria-label="Formulario de edición de perfil de la clínica"
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
         >
           <div className="md:flex md:flex-row w-full">
             {/* Avatar */}
@@ -97,9 +135,10 @@ const PerfilClinica = () => {
                   id="clinica-nombre"
                   name="nombre"
                   type="text"
-                  defaultValue="Clínica"
                   required
                   autoComplete="organization"
+                  value={nombreClinica}
+                  onChange={(e) => setNombreClinica(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
 
@@ -113,9 +152,10 @@ const PerfilClinica = () => {
                   id="clinica-correo"
                   name="correo"
                   type="email"
-                  defaultValue="correo@correo.com"
                   required
                   autoComplete="email"
+                  value={correoClinica}
+                  onChange={(e) => setCorreoClinica(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
 
@@ -129,9 +169,10 @@ const PerfilClinica = () => {
                   id="clinica-telefono"
                   name="telefono"
                   type="tel"
-                  defaultValue="55555555"
                   required
                   autoComplete="tel"
+                  value={telefonoClinica}
+                  onChange={(e) => setTelefonoClinica(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
 
@@ -145,8 +186,9 @@ const PerfilClinica = () => {
                   id="clinica-ubicacion"
                   name="ubicacion"
                   type="text"
-                  defaultValue="Calle 5ta #10"
                   required
+                  value={ubicacionClinica}
+                  onChange={(e) => setUbicacionClinica(e.target.value)}
                   className="bg-transparent text-lg focus:outline-none mb-6"
                 />
               </div>
@@ -155,107 +197,20 @@ const PerfilClinica = () => {
               <div className="px-5">
                 <div className="flex justify-center gap-4">
                   <div>
-                    <label
-                      htmlFor="dia-lunes"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-lunes"
-                        name="dias"
-                        value="lunes"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Lunes"
-                      />
-                      Lunes
-                    </label>
-                    <label
-                      htmlFor="dia-martes"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-martes"
-                        name="dias"
-                        value="martes"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Martes"
-                      />
-                      Martes
-                    </label>
-                    <label
-                      htmlFor="dia-miercoles"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-miercoles"
-                        name="dias"
-                        value="miercoles"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Miércoles"
-                      />
-                      Miércoles
-                    </label>
-                    <label
-                      htmlFor="dia-jueves"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-jueves"
-                        name="dias"
-                        value="jueves"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Jueves"
-                      />
-                      Jueves
-                    </label>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="dia-viernes"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-viernes"
-                        name="dias"
-                        value="viernes"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Viernes"
-                      />
-                      Viernes
-                    </label>
-                    <label
-                      htmlFor="dia-sabado"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-sabado"
-                        name="dias"
-                        value="sabado"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Sábado"
-                      />
-                      Sábado
-                    </label>
-                    <label
-                      htmlFor="dia-domingo"
-                      className="flex items-center gap-2"
-                    >
-                      <input
-                        id="dia-domingo"
-                        name="dias"
-                        value="domingo"
-                        type="checkbox"
-                        className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
-                        aria-label="Domingo"
-                      />
-                      Domingo
-                    </label>
+                    {diaSemana.map((dia) => (
+                      <label
+                        key={dia}
+                        className="flex items-center gap-3 text-base"
+                      >
+                        <input
+                          type="checkbox"
+                          value={dia}
+                          onChange={() => toggleDia(dia)}
+                          // className="appearance-none w-4 h-4 rounded-full border-teal-600 border checked:bg-teal-600 transition"
+                        />{' '}
+                        {dia}
+                      </label>
+                    ))}
                   </div>
                 </div>
 
@@ -268,8 +223,9 @@ const PerfilClinica = () => {
                       id="hora-apertura"
                       name="apertura"
                       type="time"
-                      defaultValue="08:00"
-                      className="px-3 py-2 border border-gray-300 rounded-xl focus-within:outline-none"
+                      value={aperturaClinica}
+                      onChange={(e) => setAperturaClinica(e.target.value)}
+                      className="bg-transparent focus-within:outline-none"
                       aria-label="Hora de apertura"
                     />
                   </div>
@@ -282,8 +238,9 @@ const PerfilClinica = () => {
                       id="hora-cierre"
                       name="cierre"
                       type="time"
-                      defaultValue="18:00"
-                      className="px-3 py-2 border border-gray-300 rounded-xl focus-within:outline-none"
+                      value={cierreClinica}
+                      onChange={(e) => setCierreClinica(e.target.value)}
+                      className="bg-transparent focus-within:outline-none"
                       aria-label="Hora de cierre"
                     />
                   </div>
@@ -309,4 +266,3 @@ const PerfilClinica = () => {
 };
 
 export default PerfilClinica;
-

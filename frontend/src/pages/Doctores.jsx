@@ -6,10 +6,15 @@ import MenuModal from '../componets/MenuModal';
 import Notificacion from '../componets/Notificacion';
 import Confirmar from '../componets/Confirmar';
 import Doctor from '../componets/Doctor';
+import { useState, useEffect } from 'react';
+
 
 //Propósito: Gestión de doctores (listar, agregar, editar, eliminar, buscar).
 
 const Doctores = () => {
+
+
+  
   return (
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" />

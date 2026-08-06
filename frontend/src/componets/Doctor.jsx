@@ -1,6 +1,6 @@
-import React from 'react';
 
-const Doctor = () => {
+const Doctor = ({agregar}) => {
+
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr_1fr] mb-3 border-b border-teal-400 w-full items-center">
       <p className="text-lg">Juan García Gómez</p>
@@ -50,6 +50,7 @@ const Doctor = () => {
 
         <button
           type="button"
+          onClick={agregar}
           aria-label="Editar doctor"
           className="p-1 outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg"
         >

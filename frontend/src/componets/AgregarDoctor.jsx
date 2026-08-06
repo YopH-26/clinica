@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 //Propósito: Formulario de agregar doctor
 
-const AgregarDoctor = () => {
+const AgregarDoctor = ({cerrar}) => {
   const [nombreDoctor, setNombreDoctor] = useState('');
   const [correoDoctor, setCorreoDoctor] = useState('');
   const [telefonoDoctor, setTelefonoDoctor] = useState('');
@@ -127,6 +127,7 @@ const AgregarDoctor = () => {
         <footer className="flex justify-around my-2 px-3">
           <button
             type="button"
+            onClick={cerrar}
             className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-red-900"
           >
             Atrás

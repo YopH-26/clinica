@@ -8,13 +8,11 @@ import Confirmar from '../componets/Confirmar';
 import Doctor from '../componets/Doctor';
 import { useState, useEffect } from 'react';
 
-
 //Propósito: Gestión de doctores (listar, agregar, editar, eliminar, buscar).
 
 const Doctores = () => {
+  const [agregarAbierto, setAgregarAbierto] = useState(false);
 
-
-  
   return (
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" />
@@ -124,7 +122,7 @@ const Doctores = () => {
           </div>
 
           {/* Relleno */}
-          <Doctor />
+          <Doctor agregar={() => setAgregarAbierto(true)} />
           <Doctor />
           <Doctor />
           <Doctor />
@@ -135,7 +133,10 @@ const Doctores = () => {
       </main>
 
       <Footer className="flex-none" />
-      {/* <AgregarDoctor /> */}
+
+      {agregarAbierto && (
+        <AgregarDoctor cerrar={() => setAgregarAbierto(false)} />
+      )}
       {/* <DetallesDoctores /> */}
       {/* <MenuModal /> */}
       {/* <Notificacion /> */}

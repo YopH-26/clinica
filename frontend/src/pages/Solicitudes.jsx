@@ -5,6 +5,7 @@ import MenuModal from '../componets/MenuModal';
 import Planificar from '../componets/Planificar';
 import SolicitudAceptada from '../componets/SolicitudAceptada';
 import SolicitudSolicitada from '../componets/SolicitudSolicitada';
+import Confirmar from '../componets/Confirmar';
 import { useState } from 'react';
 
 //Propósito: Gestionar las solicitudes de cita (listar, planificar, eliminar) y gestionar las planificadas
@@ -13,6 +14,7 @@ const Solicitudes = () => {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [detallesSolAbierto, setDetallesSolAbierto] = useState(false);
   const [planificarAbierto, setPlanificarAbierto] = useState(false);
+  const [eliminarAbierto, setEliminarAbierto] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -51,14 +53,17 @@ const Solicitudes = () => {
           <SolicitudSolicitada
             abrirDetalles={() => setDetallesSolAbierto(true)}
             abrirPlanificar={() => setPlanificarAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
           />
           <SolicitudSolicitada
             abrirDetalles={() => setDetallesSolAbierto(true)}
             abrirPlanificar={() => setPlanificarAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
           />
           <SolicitudSolicitada
             abrirDetalles={() => setDetallesSolAbierto(true)}
             abrirPlanificar={() => setPlanificarAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
           />
         </section>
 
@@ -83,16 +88,18 @@ const Solicitudes = () => {
           <SolicitudAceptada
             abrirDetalles={() => setDetallesSolAbierto(true)}
             abrirPlanificar={() => setPlanificarAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
           />
           <SolicitudAceptada
             abrirDetalles={() => setDetallesSolAbierto(true)}
             abrirPlanificar={() => setPlanificarAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
           />
           <SolicitudAceptada
             abrirDetalles={() => setDetallesSolAbierto(true)}
             abrirPlanificar={() => setPlanificarAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
           />
-          
         </section>
       </main>
 
@@ -104,6 +111,9 @@ const Solicitudes = () => {
         <Planificar cerrarPlanificar={() => setPlanificarAbierto(false)} />
       )}
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
+      {eliminarAbierto && (
+        <Confirmar cerrarEliminar={() => setEliminarAbierto(false)} />
+      )}
     </div>
   );
 };

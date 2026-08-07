@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SolicitudSolicitada = ({abrirDetalles, abrirPlanificar}) => {
+const SolicitudSolicitada = ({abrirDetalles, abrirPlanificar, abrirEliminar}) => {
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr] mb-3 border-b border-teal-400 w-full">
       <p className="text-lg hidden md:block">Juan García Gómez</p>
@@ -60,6 +60,7 @@ const SolicitudSolicitada = ({abrirDetalles, abrirPlanificar}) => {
         <button
           type="button"
           aria-label="Eliminar solicitud"
+          onClick={abrirEliminar}
           className="p-1 outline-none focus-visible:ring-2 focus-visible:ring-red-400 rounded-lg"
         >
           <svg

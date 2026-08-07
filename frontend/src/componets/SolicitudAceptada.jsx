@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SolicitudAceptada = ({abrirDetalles, abrirPlanificar}) => {
+const SolicitudAceptada = ({abrirDetalles, abrirPlanificar, abrirEliminar}) => {
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] mb-3 border-b border-teal-400 w-full">
       <p className="text-lg">Juan García Gómez</p>
@@ -59,6 +59,7 @@ const SolicitudAceptada = ({abrirDetalles, abrirPlanificar}) => {
         <button
           type="button"
           aria-label="Cancelar cita planificada"
+          onClick={abrirEliminar}
           className="p-1 outline-none focus-visible:ring-2 focus-visible:ring-red-400 rounded-lg"
         >
           <svg

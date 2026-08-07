@@ -12,6 +12,7 @@ const Perfil = () => {
   const [correoDoctor, setCorreoDoctor] = useState('algo@algo.algo');
   const [telefonoDoctor, setTelefonoDoctor] = useState('+5355555555');
   const [imagenDoctor, setImagenDoctor] = useState();
+  const [menuAbierto, setMenuAbierto] = useState(false);
   console.log(nombreDoctor, correoDoctor, telefonoDoctor, imagenDoctor);
 
   const handleSubmit = (e) => {
@@ -21,7 +22,7 @@ const Perfil = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu={() => setMenuAbierto(true)} />
 
       <main
         className="flex flex-1 flex-col items-center justify-center gap-10 p-2"
@@ -107,7 +108,6 @@ const Perfil = () => {
                   id="nombre"
                   name="nombre"
                   type="text"
-                  defaultValue="Agapito Resóplez"
                   required
                   autoComplete="name"
                   value={nombreDoctor}
@@ -122,7 +122,6 @@ const Perfil = () => {
                   id="correo"
                   name="correo"
                   type="email"
-                  defaultValue="algo@algo.com"
                   required
                   autoComplete="email"
                   value={correoDoctor}
@@ -137,7 +136,6 @@ const Perfil = () => {
                   id="telefono"
                   name="telefono"
                   type="tel"
-                  defaultValue="55555555"
                   required
                   autoComplete="tel"
                   value={telefonoDoctor}
@@ -239,7 +237,7 @@ const Perfil = () => {
       </main>
 
       <Footer className="flex-none" />
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
     </div>
   );
 };

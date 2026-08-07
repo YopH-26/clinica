@@ -16,6 +16,7 @@ const Solicitud = () => {
   const [especialidadSolicitud, setEspecialidadSolicitud] = useState('');
   const [fechaSolicitud, setFechaSolicitud] = useState(new Date());
   const [resetTrigger, setResetTrigger] =useState(0);
+  const [menuAbierto, setMenuAbierto] = useState(false)
   console.log(nombreSolicitud,correoSolicitud,telefonoSolicitud,motivoSolicitud,especialidadSolicitud.value, fechaSolicitud.toLocaleDateString('es-ES'))
 
   const handleSubmit = (e)=>{
@@ -32,7 +33,7 @@ const Solicitud = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header abrirMenu={() => setMenuAbierto(true)} />
 
       <main className="flex flex-col items-center justify-center px-4">
         <figure className="flex flex-col items-center">
@@ -154,7 +155,7 @@ const Solicitud = () => {
       </main>
 
       <Footer />
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
     </div>
   );
 };

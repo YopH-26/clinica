@@ -5,13 +5,17 @@ import MenuModal from '../componets/MenuModal';
 import Planificar from '../componets/Planificar';
 import SolicitudAceptada from '../componets/SolicitudAceptada';
 import SolicitudSolicitada from '../componets/SolicitudSolicitada';
+import { useState } from 'react';
 
 //Propósito: Gestionar las solicitudes de cita (listar, planificar, eliminar) y gestionar las planificadas
 
 const Solicitudes = () => {
+
+const [menuAbierto, setMenuAbierto] = useState(false)
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu={() => setMenuAbierto(true)} />
 
       <main className="flex-1 flex flex-col items-center justify-center p-2">
         <div className="w-28 h-28">
@@ -77,7 +81,7 @@ const Solicitudes = () => {
 
       <Footer className="flex-none" />
       {/* <SolicitudModal /> */}
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
       {/* <Planificar /> */}
     </div>
   );

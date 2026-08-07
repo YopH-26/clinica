@@ -1,13 +1,18 @@
 import Header from '../componets/Header';
 import Footer from '../componets/Footer';
 import MenuModal from '../componets/MenuModal';
+import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
 
 //Propósito: Información de la clínica y el equipo
 
 const Nosotros = () => {
+
+  const [menuAbierto, setMenuAbierto] = useState(false)
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu={()=> setMenuAbierto(true)}/>
 
       <main className="flex-1">
         {/* Hero */}
@@ -223,7 +228,7 @@ const Nosotros = () => {
       </main>
 
       <Footer className="flex-none" />
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={()=> setMenuAbierto(false)}/>}
     </div>
   );
 };

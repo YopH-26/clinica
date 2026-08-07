@@ -9,6 +9,7 @@ const Login = () => {
 
   const [usuario, setUsuario] = useState('');
   const [contrasenna, setContrasenna] = useState('');
+  const [menuAbierto, setMenuAbierto] = useState(false);
   console.log(usuario, contrasenna);
 
   const handleSubmit = (e)=>{
@@ -20,7 +21,7 @@ const Login = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header abrirMenu={() => setMenuAbierto(true)} />
 
       <main
         className="flex-1 flex flex-col items-center justify-center p-2"
@@ -132,7 +133,7 @@ const Login = () => {
       </main>
 
       <Footer />
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
     </div>
   );
 };

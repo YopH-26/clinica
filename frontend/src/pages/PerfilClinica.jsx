@@ -15,6 +15,8 @@ const PerfilClinica = () => {
   const [aperturaClinica, setAperturaClinica] = useState('08:00');
   const [cierreClinica, setCierreClinica] = useState('16:00');
   const [imagenClinica, setImagenClinica] = useState();
+    const [menuAbierto, setMenuAbierto] = useState(false);
+
   console.log(
     nombreClinica,
     correoClinica,
@@ -48,7 +50,7 @@ const PerfilClinica = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu={() => setMenuAbierto(true)} />
 
       <main
         className="flex flex-1 flex-col items-center justify-center gap-10 p-2"
@@ -260,7 +262,7 @@ const PerfilClinica = () => {
       </main>
 
       <Footer className="flex-none" />
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
     </div>
   );
 };

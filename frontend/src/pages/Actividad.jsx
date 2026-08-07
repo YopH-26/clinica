@@ -3,13 +3,17 @@ import Footer from '../componets/Footer';
 import GraficoModal from '../componets/GraficoModal';
 import MenuModal from '../componets/MenuModal';
 import DoctorActividad from '../componets/DoctorActividad';
+import { useState } from 'react';
 
 //Propósito: Mostrar la cantidad de pacientes atendidos por los doctores (día/semana/mes).
 
 const Actividad = () => {
+
+const [menuAbierto, setMenuAbierto] = useState(false)
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu={() => setMenuAbierto(true)} />
 
       <main
         className="flex-1 flex flex-col items-center justify-center"
@@ -105,14 +109,14 @@ const Actividad = () => {
           <DoctorActividad />
           <DoctorActividad />
           <DoctorActividad />
-          <GraficoModal/>
+          {/* <GraficoModal /> */}
         </section>
       </main>
 
       <Footer className="flex-none" />
 
       {/* Abrir el menú en pantallas pequeñas */}
-      <MenuModal />
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
     </div>
   );
 };

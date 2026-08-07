@@ -12,10 +12,11 @@ import { useState, useEffect } from 'react';
 
 const Doctores = () => {
   const [agregarAbierto, setAgregarAbierto] = useState(false);
+  const [menuAbierto, setMenuAbierto] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu={() => setMenuAbierto(true)} />
 
       <main
         className="flex-1 flex flex-col items-center justify-center p-1"
@@ -138,7 +139,7 @@ const Doctores = () => {
         <AgregarDoctor cerrar={() => setAgregarAbierto(false)} />
       )}
       {/* <DetallesDoctores /> */}
-      {/* <MenuModal /> */}
+      {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
       {/* <Notificacion /> */}
       {/* <Confirmar /> */}
     </div>

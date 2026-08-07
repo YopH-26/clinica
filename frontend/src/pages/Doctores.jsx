@@ -12,6 +12,7 @@ import { useState, useEffect } from 'react';
 
 const Doctores = () => {
   const [agregarAbierto, setAgregarAbierto] = useState(false);
+  const [detallesAbierto, setDetallesAbierto]=useState(false)
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   return (
@@ -42,6 +43,7 @@ const Doctores = () => {
           <div className="w-full flex justify-between mb-10">
             <button
               type="button"
+              on onClick={()=>setAgregarAbierto(true)}
               className="uppercase font-semibold text-base bg-teal-600 rounded-full px-3 py-1 text-white hidden md:inline-block outline-none focus-visible:ring-2  focus-visible:ring-teal-900"
               aria-label="Agregar doctor"
             >
@@ -123,13 +125,7 @@ const Doctores = () => {
           </div>
 
           {/* Relleno */}
-          <Doctor agregar={() => setAgregarAbierto(true)} />
-          <Doctor />
-          <Doctor />
-          <Doctor />
-          <Doctor />
-          <Doctor />
-          <Doctor />
+          <Doctor agregar={() => setAgregarAbierto(true)} abrirDetalles={()=>setDetallesAbierto(true)}/>
         </section>
       </main>
 
@@ -138,7 +134,7 @@ const Doctores = () => {
       {agregarAbierto && (
         <AgregarDoctor cerrar={() => setAgregarAbierto(false)} />
       )}
-      {/* <DetallesDoctores /> */}
+      {detallesAbierto && <DetallesDoctores cerrarDetalles ={()=>setDetallesAbierto(false)}/>}
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
       {/* <Notificacion /> */}
       {/* <Confirmar /> */}

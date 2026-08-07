@@ -1,5 +1,5 @@
 
-const Doctor = ({agregar}) => {
+const Doctor = ({agregar, abrirDetalles}) => {
 
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr_1fr] mb-3 border-b border-teal-400 w-full items-center">
@@ -41,6 +41,7 @@ const Doctor = ({agregar}) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-black"
+            onClick={abrirDetalles}
           >
             <circle cx="12" cy="12" r="1" />
             <circle cx="19" cy="12" r="1" />

@@ -3,7 +3,7 @@ import Calendario from '../componets/Calendario';
 import EspecialidadSelect from '../componets/EspecialidadSelect';
 import { useState, useEffect } from 'react';
 
-const Planificar = () => {
+const Planificar = ({cerrarPlanificar}) => {
 
     const [nombreSolicitud, setNombreSolicitud] = useState('');
     const [correoSolicitud, setCorreoSolicitud] = useState('');
@@ -172,6 +172,7 @@ const Planificar = () => {
           <div className="flex justify-around my-2 w-full px-6">
             <button
               type="button"
+              onClick={cerrarPlanificar}
               className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-red-800"
             >
               Atrás

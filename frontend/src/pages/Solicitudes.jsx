@@ -10,9 +10,9 @@ import { useState } from 'react';
 //Propósito: Gestionar las solicitudes de cita (listar, planificar, eliminar) y gestionar las planificadas
 
 const Solicitudes = () => {
-
-const [menuAbierto, setMenuAbierto] = useState(false)
-const [detallesSolAbierto, setDetallesSolAbierto] =useState(false)
+  const [menuAbierto, setMenuAbierto] = useState(false);
+  const [detallesSolAbierto, setDetallesSolAbierto] = useState(false);
+  const [planificarAbierto, setPlanificarAbierto] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -48,10 +48,18 @@ const [detallesSolAbierto, setDetallesSolAbierto] =useState(false)
           </div>
 
           {/* Relleno */}
-          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
-          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
-          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
-          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudSolicitada
+            abrirDetalles={() => setDetallesSolAbierto(true)}
+            abrirPlanificar={() => setPlanificarAbierto(true)}
+          />
+          <SolicitudSolicitada
+            abrirDetalles={() => setDetallesSolAbierto(true)}
+            abrirPlanificar={() => setPlanificarAbierto(true)}
+          />
+          <SolicitudSolicitada
+            abrirDetalles={() => setDetallesSolAbierto(true)}
+            abrirPlanificar={() => setPlanificarAbierto(true)}
+          />
         </section>
 
         {/* Citas planificadas */}
@@ -72,17 +80,30 @@ const [detallesSolAbierto, setDetallesSolAbierto] =useState(false)
           </div>
 
           {/* Relleno */}
-          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
-          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
-          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
-          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudAceptada
+            abrirDetalles={() => setDetallesSolAbierto(true)}
+            abrirPlanificar={() => setPlanificarAbierto(true)}
+          />
+          <SolicitudAceptada
+            abrirDetalles={() => setDetallesSolAbierto(true)}
+            abrirPlanificar={() => setPlanificarAbierto(true)}
+          />
+          <SolicitudAceptada
+            abrirDetalles={() => setDetallesSolAbierto(true)}
+            abrirPlanificar={() => setPlanificarAbierto(true)}
+          />
+          
         </section>
       </main>
 
       <Footer className="flex-none" />
-      {detallesSolAbierto && <SolicitudModal cerrarDetalles ={()=>setDetallesSolAbierto(false)}/>}
+      {detallesSolAbierto && (
+        <SolicitudModal cerrarDetalles={() => setDetallesSolAbierto(false)} />
+      )}
+      {planificarAbierto && (
+        <Planificar cerrarPlanificar={() => setPlanificarAbierto(false)} />
+      )}
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
-      {/* <Planificar /> */}
     </div>
   );
 };

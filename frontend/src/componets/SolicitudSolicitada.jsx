@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SolicitudSolicitada = ({abrirDetalles}) => {
+const SolicitudSolicitada = ({abrirDetalles, abrirPlanificar}) => {
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr] mb-3 border-b border-teal-400 w-full">
       <p className="text-lg hidden md:block">Juan García Gómez</p>
@@ -48,6 +48,7 @@ const SolicitudSolicitada = ({abrirDetalles}) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-green-600"
+            onClick={abrirPlanificar}
           >
             <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
             <line x1="16" y1="2" x2="16" y2="6" />

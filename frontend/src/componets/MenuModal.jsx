@@ -1,13 +1,14 @@
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 
-const MenuModal = () => {
+const MenuModal = ({cerrarMenu}) => {
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-50 lg:hidden" aria-hidden={false}>
       {/* Backdrop semitransparente */}
       <div
         className="absolute inset-0 bg-gray-100/10"
         aria-hidden="true"
+        onClick={cerrarMenu}
       />
 
       {/* Panel deslizable */}
@@ -21,6 +22,7 @@ const MenuModal = () => {
         <div className="absolute top-4 right-4">
           <button
             type="button"
+            onClick={cerrarMenu}
             aria-label="Cerrar menú"
             className="p-2 rounded-full hover:bg-teal-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
           >

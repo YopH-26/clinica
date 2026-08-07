@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({abrirMenu}) => {
   return (
     <header className="bg-[rgb(243,248,252)] mb-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
@@ -31,6 +31,7 @@ const Header = () => {
               {/* Botón de menú móvil*/}
               <button
                 type="button"
+                onClick={abrirMenu}
                 className="ml-2 p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
                 aria-label="Abrir menú"
                 aria-controls="main-navigation"

@@ -11,6 +11,7 @@ const Home = () => {
   const [nombreComentario, setNombreComentario] = useState('');
   const [correoComentario, setCorreoComentario] = useState('');
   const [opinionComentario, setOpinionComentario] = useState('');
+  const [menuAbierto, setMenuAbierto] = useState(false)
   console.log(opinionComentario,nombreComentario,correoComentario)
 
 const handleSubmit = (e)=> {
@@ -23,7 +24,7 @@ const handleSubmit = (e)=> {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header className="flex-none" />
+      <Header className="flex-none" abrirMenu = {()=>setMenuAbierto(true)}/>
 
       <main className="flex flex-1 flex-col items-center">
         <div className="flex flex-col w-full px-16 md:flex-row items-center justify-between lg:gap-24 max-w-4xl">
@@ -151,7 +152,7 @@ const handleSubmit = (e)=> {
       </main>
 
       <Footer className="flex-none" />
-      <MenuModal />
+      {menuAbierto && <MenuModal cerrarMenu = {()=> setMenuAbierto(false)}/>}
     </div>
   );
 };

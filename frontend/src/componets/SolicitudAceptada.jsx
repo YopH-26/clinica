@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SolicitudAceptada = () => {
+const SolicitudAceptada = ({abrirDetalles}) => {
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] mb-3 border-b border-teal-400 w-full">
       <p className="text-lg">Juan García Gómez</p>
@@ -23,6 +23,7 @@ const SolicitudAceptada = () => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-blue-600"
+            onClick={abrirDetalles}
           >
             <circle cx="12" cy="12" r="1" />
             <circle cx="19" cy="12" r="1" />

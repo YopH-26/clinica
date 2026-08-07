@@ -12,6 +12,7 @@ import { useState } from 'react';
 const Solicitudes = () => {
 
 const [menuAbierto, setMenuAbierto] = useState(false)
+const [detallesSolAbierto, setDetallesSolAbierto] =useState(false)
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -47,11 +48,10 @@ const [menuAbierto, setMenuAbierto] = useState(false)
           </div>
 
           {/* Relleno */}
-          <SolicitudSolicitada />
-          <SolicitudSolicitada />
-          <SolicitudSolicitada />
-          <SolicitudSolicitada />
-          <SolicitudSolicitada />
+          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudSolicitada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
         </section>
 
         {/* Citas planificadas */}
@@ -72,15 +72,15 @@ const [menuAbierto, setMenuAbierto] = useState(false)
           </div>
 
           {/* Relleno */}
-          <SolicitudAceptada />
-          <SolicitudAceptada />
-          <SolicitudAceptada />
-          <SolicitudAceptada />
+          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
+          <SolicitudAceptada abrirDetalles = {()=>setDetallesSolAbierto(true)}/>
         </section>
       </main>
 
       <Footer className="flex-none" />
-      {/* <SolicitudModal /> */}
+      {detallesSolAbierto && <SolicitudModal cerrarDetalles ={()=>setDetallesSolAbierto(false)}/>}
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
       {/* <Planificar /> */}
     </div>

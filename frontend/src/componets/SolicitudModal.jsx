@@ -1,17 +1,17 @@
 import ReactDOM from "react-dom";
 
-const SolicitudModal = () => {
+const SolicitudModal = ({cerrarDetalles}) => {
   return ReactDOM.createPortal(
     // Backdrop + panel
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
       role="presentation"
-      aria-hipen="false"
+      aria-hidden="false"
     >
       {/* Backdrop semitransparente */}
       <div
         className="absolute inset-0 bg-black/50"
-        aria-hipen="true"
+        aria-hidden="true"
       />
 
       {/* Panel del modal */}
@@ -84,6 +84,7 @@ const SolicitudModal = () => {
           <footer className="flex justify-around gap-4 mt-2">
             <button
               type="button"
+              onClick={cerrarDetalles}
               className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-red-800"
               // implementar
             >

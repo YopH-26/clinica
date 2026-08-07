@@ -12,13 +12,13 @@ import { useState, useEffect } from 'react';
 
 const Doctores = () => {
   const [agregarAbierto, setAgregarAbierto] = useState(false);
-  const [detallesAbierto, setDetallesAbierto]=useState(false)
+  const [detallesAbierto, setDetallesAbierto] = useState(false);
+  const [eliminarAbierto, setEliminarAbierto] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header className="flex-none" abrirMenu={() => setMenuAbierto(true)} />
-
       <main
         className="flex-1 flex flex-col items-center justify-center p-1"
         aria-label="Listado de doctores"
@@ -43,7 +43,7 @@ const Doctores = () => {
           <div className="w-full flex justify-between mb-10">
             <button
               type="button"
-              on onClick={()=>setAgregarAbierto(true)}
+              onClick={() => setAgregarAbierto(true)}
               className="uppercase font-semibold text-base bg-teal-600 rounded-full px-3 py-1 text-white hidden md:inline-block outline-none focus-visible:ring-2  focus-visible:ring-teal-900"
               aria-label="Agregar doctor"
             >
@@ -125,19 +125,40 @@ const Doctores = () => {
           </div>
 
           {/* Relleno */}
-          <Doctor agregar={() => setAgregarAbierto(true)} abrirDetalles={()=>setDetallesAbierto(true)}/>
+          <Doctor
+            agregar={() => setAgregarAbierto(true)}
+            abrirDetalles={() => setDetallesAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
+          />
+          <Doctor
+            agregar={() => setAgregarAbierto(true)}
+            abrirDetalles={() => setDetallesAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
+          />
+          <Doctor
+            agregar={() => setAgregarAbierto(true)}
+            abrirDetalles={() => setDetallesAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
+          />
+          <Doctor
+            agregar={() => setAgregarAbierto(true)}
+            abrirDetalles={() => setDetallesAbierto(true)}
+            abrirEliminar={() => setEliminarAbierto(true)}
+          />
         </section>
       </main>
-
       <Footer className="flex-none" />
-
       {agregarAbierto && (
         <AgregarDoctor cerrar={() => setAgregarAbierto(false)} />
       )}
-      {detallesAbierto && <DetallesDoctores cerrarDetalles ={()=>setDetallesAbierto(false)}/>}
+      {detallesAbierto && (
+        <DetallesDoctores cerrarDetalles={() => setDetallesAbierto(false)} />
+      )}
+      {eliminarAbierto && (
+        <Confirmar cerrarEliminar={() => setEliminarAbierto(false)} />
+      )}{' '}
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
       {/* <Notificacion /> */}
-      {/* <Confirmar /> */}
     </div>
   );
 };

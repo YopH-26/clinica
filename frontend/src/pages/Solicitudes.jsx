@@ -114,6 +114,7 @@ const Solicitudes = () => {
       {eliminarAbierto && (
         <Confirmar cerrarEliminar={() => setEliminarAbierto(false)} />
       )}
+      {/* <Notificacion /> */}
     </div>
   );
 };

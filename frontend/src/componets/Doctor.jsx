@@ -1,5 +1,5 @@
 
-const Doctor = ({agregar, abrirDetalles}) => {
+const Doctor = ({agregar, abrirDetalles, abrirEliminar}) => {
 
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr_1fr] mb-3 border-b border-teal-400 w-full items-center">
@@ -88,6 +88,7 @@ const Doctor = ({agregar, abrirDetalles}) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-red-600"
+            onClick={abrirEliminar}
           >
             <path d="M3 6h18" />
             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />

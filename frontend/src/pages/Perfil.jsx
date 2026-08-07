@@ -238,6 +238,7 @@ const Perfil = () => {
 
       <Footer className="flex-none" />
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
+      {/* <Notificacion /> */}
     </div>
   );
 };

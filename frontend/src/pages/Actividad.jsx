@@ -10,6 +10,7 @@ import { useState } from 'react';
 const Actividad = () => {
 
 const [menuAbierto, setMenuAbierto] = useState(false)
+const [graficoAbierto, setGraficoAbierto] = useState(false)
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -91,7 +92,6 @@ const [menuAbierto, setMenuAbierto] = useState(false)
               </button>
             </form>
           </div>
-
           <div className="grid grid-cols-[3fr_2fr_1fr] md:grid-cols-[3fr_3fr_2fr_1fr] lg:grid-cols-[5fr_5fr_3fr_1fr] mb-3 border-b-2 border-teal-700 w-full">
             <h3 className="uppercase font-semibold text-lg">Nombre</h3>
             <h3 className="uppercase font-semibold text-lg hidden md:block">
@@ -102,14 +102,23 @@ const [menuAbierto, setMenuAbierto] = useState(false)
               Acciones
             </h3>
           </div>
-
           {/* Relleno */}
-          <DoctorActividad />
-          <DoctorActividad />
-          <DoctorActividad />
-          <DoctorActividad />
-          <DoctorActividad />
-          {/* <GraficoModal /> */}
+          <DoctorActividad
+            abrirGrafico={() => setGraficoAbierto(true)}
+            cerrarGrafico={() => setGraficoAbierto(false)}
+            graficoAbierto={graficoAbierto}
+          />
+          <DoctorActividad
+            abrirGrafico={() => setGraficoAbierto(true)}
+            cerrarGrafico={() => setGraficoAbierto(false)}
+            graficoAbierto={graficoAbierto}
+          />
+          <DoctorActividad
+            abrirGrafico={() => setGraficoAbierto(true)}
+            cerrarGrafico={() => setGraficoAbierto(false)}
+            graficoAbierto={graficoAbierto}
+          />
+          {graficoAbierto && <GraficoModal />}
         </section>
       </main>
 

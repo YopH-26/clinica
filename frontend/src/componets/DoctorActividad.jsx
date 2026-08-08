@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DoctorActividad = () => {
+const DoctorActividad = ({ abrirGrafico, cerrarGrafico, graficoAbierto}) => {
   return (
     <div className="grid grid-cols-[4fr_2fr_1fr] md:grid-cols-[3fr_3fr_2fr_1fr] lg:grid-cols-[5fr_5fr_3fr_1fr] mb-3 border-b border-teal-400 w-full items-center">
       <p className="text-lg">Juan García Gómez</p>
@@ -11,6 +11,7 @@ const DoctorActividad = () => {
         <button
           type="button"
           aria-label="Ver actividad del doctor"
+          onClick={graficoAbierto ? cerrarGrafico : abrirGrafico}
           className="p-1 outline-none focus-visible:ring-2  focus-visible:ring-teal-600 rounded-lg"
         >
           <svg
@@ -35,6 +36,6 @@ const DoctorActividad = () => {
       </div>
     </div>
   );
-}
+};
 
 export default DoctorActividad

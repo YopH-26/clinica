@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 
 //Propósito: Mostrar información ampliada de los doctores
 
-const DetallesDoctores = ({cerrarDetalles}) => {
+const DetallesDoctores = ({doctor, cerrarDetalles}) => {
   return ReactDOM.createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center"
@@ -38,17 +38,17 @@ const DetallesDoctores = ({cerrarDetalles}) => {
         <div className="p-3">
           <section className="md:flex md:justify-between md:gap-6">
             <div className="flex-1">
-                <p className="font-bold text-xl">Nombre</p>
-                <p className="text-lg mb-1">Emeregildo Fonseca Fonseca</p>
-                <p className="font-bold text-xl">Correo</p>
-                <p className="text-lg mb-1">correo@correo.com</p>
-                <p className="font-bold text-xl">Teléfono</p>
-                <p className="text-lg mb-1">+53 55555555</p>
+              <p className="font-bold text-xl">Nombre</p>
+              <p className="text-lg mb-1">{doctor.nombreDoctor}</p>
+              <p className="font-bold text-xl">Correo</p>
+              <p className="text-lg mb-1">{doctor.correoDoctor}</p>
+              <p className="font-bold text-xl">Teléfono</p>
+              <p className="text-lg mb-1">{doctor.telefonoDoctor}</p>
             </div>
 
             <div className="flex-1 md:mt-0 max-w-[11rem]">
-                <p className="font-bold text-xl">Usuario</p>
-                <p className="text-lg mb-1">use_1</p>
+              <p className="font-bold text-xl">Usuario</p>
+              <p className="text-lg mb-1">use_1</p>
               <p className="font-bold text-xl lg:hidden">Público</p>
               <div className="items-center cursor-pointer w-9 lg:hidden">
                 <label

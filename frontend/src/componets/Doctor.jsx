@@ -1,11 +1,12 @@
+const Doctor = ({ agregar, abrirDetalles, abrirEliminar, doctor }) => {
 
-const Doctor = ({agregar, abrirDetalles, abrirEliminar}) => {
+  const { nombreDoctor, especialidadDoctor } = doctor;
 
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr_1fr] mb-3 border-b border-teal-400 w-full items-center">
-      <p className="text-lg">Juan García Gómez</p>
+      <p className="text-lg">{nombreDoctor}</p>
       <p className="text-lg hidden lg:block">user_1</p>
-      <p className="text-lg hidden md:block">Cardiología</p>
+      <p className="text-lg hidden md:block">{especialidadDoctor}</p>
 
       <div className="items-center cursor-pointer hidden w-9 lg:flex focus-within:ring-2 focus-within:ring-gray-800 rounded-full">
         <label
@@ -41,7 +42,7 @@ const Doctor = ({agregar, abrirDetalles, abrirEliminar}) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-black"
-            onClick={abrirDetalles}
+            onClick={() => abrirDetalles(doctor)}
           >
             <circle cx="12" cy="12" r="1" />
             <circle cx="19" cy="12" r="1" />

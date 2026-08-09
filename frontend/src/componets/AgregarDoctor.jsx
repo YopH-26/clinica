@@ -3,21 +3,37 @@ import { useState, useEffect } from 'react';
 
 //Propósito: Formulario de agregar doctor
 
-const AgregarDoctor = ({cerrar}) => {
+const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
   const [nombreDoctor, setNombreDoctor] = useState('');
   const [correoDoctor, setCorreoDoctor] = useState('');
   const [telefonoDoctor, setTelefonoDoctor] = useState('');
   const [especialidadDoctor, setEspecialidadDoctor] = useState('');
-  console.log(nombreDoctor, correoDoctor, telefonoDoctor, especialidadDoctor);
 
+  //Función de enviar formulario
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('enviandooooo');
+
+    //Objeto de doctor
+    const objetoDoctor = {
+      nombreDoctor,
+      correoDoctor,
+      telefonoDoctor,
+      especialidadDoctor,
+      id : generarId()
+    }
+    setDoctores([...doctores, objetoDoctor]);
+
     setNombreDoctor('');
     setCorreoDoctor('');
     setTelefonoDoctor('');
     setEspecialidadDoctor('');
   };
+
+  const generarId = ()=>{
+    const random = Math.random().toString(36).substring(2)
+    const fecha = Date.now().toString(36)
+    return random+fecha
+  }
 
   return ReactDOM.createPortal(
     <div

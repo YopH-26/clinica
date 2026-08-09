@@ -12,9 +12,10 @@ import { useState, useEffect } from 'react';
 
 const Doctores = () => {
   const [agregarAbierto, setAgregarAbierto] = useState(false);
-  const [detallesAbierto, setDetallesAbierto] = useState(false);
+  const [dotorDetalles, setDoctorDetalles] = useState(false);
   const [eliminarAbierto, setEliminarAbierto] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
+  const [doctores, setDoctores] = useState([]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -124,35 +125,28 @@ const Doctores = () => {
             <h3 className="uppercase font-semibold text-lg">Acciones</h3>
           </div>
 
-          {/* Relleno */}
-          <Doctor
-            agregar={() => setAgregarAbierto(true)}
-            abrirDetalles={() => setDetallesAbierto(true)}
-            abrirEliminar={() => setEliminarAbierto(true)}
-          />
-          <Doctor
-            agregar={() => setAgregarAbierto(true)}
-            abrirDetalles={() => setDetallesAbierto(true)}
-            abrirEliminar={() => setEliminarAbierto(true)}
-          />
-          <Doctor
-            agregar={() => setAgregarAbierto(true)}
-            abrirDetalles={() => setDetallesAbierto(true)}
-            abrirEliminar={() => setEliminarAbierto(true)}
-          />
-          <Doctor
-            agregar={() => setAgregarAbierto(true)}
-            abrirDetalles={() => setDetallesAbierto(true)}
-            abrirEliminar={() => setEliminarAbierto(true)}
-          />
+          {/* Listado de doctores */}
+          {doctores.map((doctor) => (
+            <Doctor
+              agregar={() => setAgregarAbierto(true)}
+              abrirDetalles={(doctor) => setDoctorDetalles(doctor)}
+              abrirEliminar={() => setEliminarAbierto(true)}
+              key={doctor.id}
+              doctor={doctor}
+            />
+          ))}
         </section>
       </main>
       <Footer className="flex-none" />
       {agregarAbierto && (
-        <AgregarDoctor cerrar={() => setAgregarAbierto(false)} />
+        <AgregarDoctor
+          cerrar={() => setAgregarAbierto(false)}
+          doctores={doctores}
+          setDoctores={setDoctores}
+        />
       )}
-      {detallesAbierto && (
-        <DetallesDoctores cerrarDetalles={() => setDetallesAbierto(false)} />
+      {dotorDetalles && (
+        <DetallesDoctores doctor={dotorDetalles} cerrarDetalles={() => setDoctorDetalles(false)} />
       )}
       {eliminarAbierto && (
         <Confirmar cerrarEliminar={() => setEliminarAbierto(false)} />

@@ -15,7 +15,38 @@ const Doctores = () => {
   const [dotorDetalles, setDoctorDetalles] = useState(false);
   const [eliminarAbierto, setEliminarAbierto] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [doctores, setDoctores] = useState([]);
+  const [doctores, setDoctores] = useState(()=>{
+    const guardados = localStorage.getItem('doctores');
+    return guardados ? JSON.parse(guardados) : []
+  });
+  const [doctorEdit, setDoctorEdit] = useState({});
+  const [accion, setAccion] = useState('agregar');
+  const [doctorEliminar, setDoctorEliminar] = useState(null);
+
+
+  useEffect(() => {
+    localStorage.setItem('doctores', JSON.stringify(doctores));
+  }, [doctores]);
+
+  const agregarOnClick = () => {
+    setAgregarAbierto(true);
+    setAccion('agregar');
+  };
+
+  const obtenerDoctor = (id) => {
+    setDoctorEliminar(id);
+  };
+
+  const eliminarDoctor = () => {
+    if (doctorEliminar) {
+      const doctoresActualizados = doctores.filter(
+        (doc) => doc.id !== doctorEliminar,
+      );
+      setDoctores(doctoresActualizados);
+      setEliminarAbierto(false);
+      setDoctorEliminar(null);
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -44,7 +75,7 @@ const Doctores = () => {
           <div className="w-full flex justify-between mb-10">
             <button
               type="button"
-              onClick={() => setAgregarAbierto(true)}
+              onClick={agregarOnClick}
               className="uppercase font-semibold text-base bg-teal-600 rounded-full px-3 py-1 text-white hidden md:inline-block outline-none focus-visible:ring-2  focus-visible:ring-teal-900"
               aria-label="Agregar doctor"
             >
@@ -133,6 +164,10 @@ const Doctores = () => {
               abrirEliminar={() => setEliminarAbierto(true)}
               key={doctor.id}
               doctor={doctor}
+              setDoctorEdit={setDoctorEdit}
+              setAccion={setAccion}
+              obtenerDoctor={obtenerDoctor}
+              setEliminarAbierto={setEliminarAbierto}
             />
           ))}
         </section>
@@ -143,13 +178,22 @@ const Doctores = () => {
           cerrar={() => setAgregarAbierto(false)}
           doctores={doctores}
           setDoctores={setDoctores}
+          doctorEdit={doctorEdit}
+          setDoctorEdit={setDoctorEdit}
+          accion={accion}
         />
       )}
       {dotorDetalles && (
-        <DetallesDoctores doctor={dotorDetalles} cerrarDetalles={() => setDoctorDetalles(false)} />
+        <DetallesDoctores
+          doctor={dotorDetalles}
+          cerrarDetalles={() => setDoctorDetalles(false)}
+        />
       )}
       {eliminarAbierto && (
-        <Confirmar cerrarEliminar={() => setEliminarAbierto(false)} />
+        <Confirmar
+          cerrarEliminar={() => setEliminarAbierto(false)}
+          eliminarDoctor={eliminarDoctor}
+        />
       )}{' '}
       {menuAbierto && <MenuModal cerrarMenu={() => setMenuAbierto(false)} />}
       {/* <Notificacion /> */}

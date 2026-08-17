@@ -3,7 +3,14 @@ import { useState, useEffect } from 'react';
 
 //Propósito: Formulario de agregar doctor
 
-const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
+const AgregarDoctor = ({
+  cerrar,
+  doctores,
+  setDoctores,
+  doctorEdit,
+  setDoctorEdit,
+  accion,
+}) => {
   const [nombreDoctor, setNombreDoctor] = useState('');
   const [correoDoctor, setCorreoDoctor] = useState('');
   const [telefonoDoctor, setTelefonoDoctor] = useState('');
@@ -18,10 +25,18 @@ const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
       nombreDoctor,
       correoDoctor,
       telefonoDoctor,
-      especialidadDoctor,
-      id : generarId()
+      especialidadDoctor
+    };
+
+    if (doctorEdit.id) {
+      objetoDoctor.id = doctorEdit.id
+      const doctoresActualizados = doctores.map(doctorState => doctorState.id === doctorEdit.id ? objetoDoctor : doctorState)
+      setDoctores(doctoresActualizados)
+      setDoctorEdit({})
+    }else{
+      objetoDoctor.id = generarId()
+      setDoctores([...doctores, objetoDoctor]);
     }
-    setDoctores([...doctores, objetoDoctor]);
 
     setNombreDoctor('');
     setCorreoDoctor('');
@@ -29,11 +44,25 @@ const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
     setEspecialidadDoctor('');
   };
 
-  const generarId = ()=>{
-    const random = Math.random().toString(36).substring(2)
-    const fecha = Date.now().toString(36)
-    return random+fecha
+  const cerrarClick = ()=>{
+    cerrar();
+    setDoctorEdit({})
   }
+
+  useEffect(() => {
+    if (Object.keys(doctorEdit).length > 0) {
+      setNombreDoctor(doctorEdit.nombreDoctor);
+      setCorreoDoctor(doctorEdit.correoDoctor);
+      setTelefonoDoctor(doctorEdit.telefonoDoctor);
+      setEspecialidadDoctor(doctorEdit.especialidadDoctor);
+    }
+  }, [doctorEdit]);
+
+  const generarId = () => {
+    const random = Math.random().toString(36).substring(2);
+    const fecha = Date.now().toString(36);
+    return random + fecha;
+  };
 
   return ReactDOM.createPortal(
     <div
@@ -63,7 +92,7 @@ const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
           </div>
 
           <h2 className="uppercase text-xl font-bold text-teal-950 ml-3">
-            Agregar doctor
+            {accion == 'agregar' ? 'Agregar Doctor' : 'Editar Doctor'}
           </h2>
         </header>
 
@@ -125,7 +154,7 @@ const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
               type="text"
               placeholder="Ej. Cardiología"
               value={especialidadDoctor}
-              onChange={(e)=>setEspecialidadDoctor(e.target.value)}
+              onChange={(e) => setEspecialidadDoctor(e.target.value)}
               className="border border-gray-400 rounded-md outline-none px-2 py-1 w-5/6 mb-2"
             />
 
@@ -143,7 +172,7 @@ const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
         <footer className="flex justify-around my-2 px-3">
           <button
             type="button"
-            onClick={cerrar}
+            onClick={cerrarClick}
             className="border-2 border-red-600 rounded-full text-red-600 font-semibold px-3 py-1 uppercase hover:scale-105 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-red-900"
           >
             Atrás
@@ -153,7 +182,7 @@ const AgregarDoctor = ({cerrar, doctores, setDoctores}) => {
             type="submit"
             className="bg-blue-600 rounded-full px-3 py-1 text-white uppercase hover:scale-105 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900"
           >
-            Agregar
+            {accion == 'agregar' ? 'Agregar' : 'Editar'}
           </button>
         </footer>
       </form>

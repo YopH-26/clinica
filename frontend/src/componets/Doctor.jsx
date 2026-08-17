@@ -1,6 +1,26 @@
-const Doctor = ({ agregar, abrirDetalles, abrirEliminar, doctor }) => {
+import Confirmar from './Confirmar';
 
+const Doctor = ({
+  agregar,
+  abrirDetalles,
+  abrirEliminar,
+  doctor,
+  setDoctorEdit,
+  setAccion,
+  obtenerDoctor,
+  setEliminarAbierto,
+}) => {
   const { nombreDoctor, especialidadDoctor } = doctor;
+
+  const editarOnClick = () => {
+    setDoctorEdit(doctor);
+    setAccion('editar');
+  };
+
+  const handleEliminar = () => {
+    setEliminarAbierto(true);
+    obtenerDoctor(doctor.id);
+  };
 
   return (
     <div className="grid grid-cols-[2fr_1fr] md:grid-cols-[2fr_2fr_1fr] lg:grid-cols-[2fr_2fr_2fr_1fr_1fr] mb-3 border-b border-teal-400 w-full items-center">
@@ -67,6 +87,7 @@ const Doctor = ({ agregar, abrirDetalles, abrirEliminar, doctor }) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-blue-500"
+            onClick={editarOnClick}
           >
             <path d="M12 20h9" />
             <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
@@ -89,7 +110,7 @@ const Doctor = ({ agregar, abrirDetalles, abrirEliminar, doctor }) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="text-red-600"
-            onClick={abrirEliminar}
+            onClick={handleEliminar}
           >
             <path d="M3 6h18" />
             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />

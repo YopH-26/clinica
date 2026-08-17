@@ -1,4 +1,5 @@
-const Confirmar = ({cerrarEliminar}) => {
+const Confirmar = ({ cerrarEliminar, eliminarDoctor }) => {
+
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-white rounded-xl shadow-2xl max-w-md w-full mx-4 p-6">
@@ -31,13 +32,16 @@ const Confirmar = ({cerrarEliminar}) => {
         {/* Botones */}
         <div className="flex gap-3">
           <button
-          type="button"
+            type="button"
             onClick={cerrarEliminar}
             className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
           >
             Cancelar
           </button>
-          <button className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition">
+          <button
+            className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600 transition"
+            onClick={eliminarDoctor}
+          >
             Eliminar
           </button>
         </div>

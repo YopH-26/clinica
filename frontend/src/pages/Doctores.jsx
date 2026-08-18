@@ -15,14 +15,14 @@ const Doctores = () => {
   const [dotorDetalles, setDoctorDetalles] = useState(false);
   const [eliminarAbierto, setEliminarAbierto] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
-  const [doctores, setDoctores] = useState(()=>{
+  const [doctores, setDoctores] = useState(() => {
     const guardados = localStorage.getItem('doctores');
-    return guardados ? JSON.parse(guardados) : []
+    return guardados ? JSON.parse(guardados) : [];
   });
   const [doctorEdit, setDoctorEdit] = useState({});
   const [accion, setAccion] = useState('agregar');
   const [doctorEliminar, setDoctorEliminar] = useState(null);
-
+  const [buscar, setBuscar] = useState('');
 
   useEffect(() => {
     localStorage.setItem('doctores', JSON.stringify(doctores));
@@ -47,6 +47,11 @@ const Doctores = () => {
       setDoctorEliminar(null);
     }
   };
+
+  //buscar
+  const doctoresFiltrados = doctores.filter((doc) =>
+    doc.nombreDoctor.toLowerCase().includes(buscar.toLowerCase()),
+  );
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -116,29 +121,11 @@ const Doctores = () => {
                 name="buscar"
                 type="text"
                 placeholder="Buscar"
+                value={buscar}
+                onChange={(e) => setBuscar(e.target.value)}
                 className="border-2 rounded-lg p-1 text-base focus:outline-none"
                 aria-label="Buscar doctor por nombre"
               />
-              <button
-                type="submit"
-                className="px-3 py-2 bg-teal-500 text-white rounded-md outline-none focus-visible:ring-2  focus-visible:ring-teal-700"
-                aria-label="Buscar"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </button>
             </form>
           </div>
 
@@ -157,7 +144,7 @@ const Doctores = () => {
           </div>
 
           {/* Listado de doctores */}
-          {doctores.map((doctor) => (
+          {doctoresFiltrados.map((doctor) => (
             <Doctor
               agregar={() => setAgregarAbierto(true)}
               abrirDetalles={(doctor) => setDoctorDetalles(doctor)}

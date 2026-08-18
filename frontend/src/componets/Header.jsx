@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = ({abrirMenu}) => {
   return (
@@ -7,26 +7,26 @@ const Header = ({abrirMenu}) => {
         <div className="flex items-center justify-between h-16">
           {/* Branding */}
           <div className="flex items-center gap-x-3 outline-none p-1 rounded-lg focus-within:ring-2 focus-within:ring-teal-300">
-            <Link to="/" className="flex items-center gap-x-3 outline-none">
+            <NavLink to="/" className="flex items-center gap-x-3 outline-none">
               <img
                 src="/img/logo.jpg"
                 alt="Logotipo de Clínica"
                 className="w-12 h-12 rounded-full object-cover"
               />
               <span className="uppercase text-xl font-semibold">Clínica</span>
-            </Link>
+            </NavLink>
           </div>
 
           {/* Navegación */}
           <nav aria-label="Menú principal" className="flex items-center">
             {/* Botón de solicitar visible en pantallas pequeñas */}
             <div className="flex items-center gap-x-2 lg:hidden">
-              <Link
+              <NavLink
                 to="/solicitud"
                 className="bg-blue-600 text-white rounded-full py-1 px-4 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900"
               >
                 Solicitar Cita
-              </Link>
+              </NavLink>
 
               {/* Botón de menú móvil*/}
               <button
@@ -64,73 +64,87 @@ const Header = ({abrirMenu}) => {
               role="menubar"
             >
               <li role="none">
-                <Link
+                <NavLink
                   to="/"
                   role="menuitem"
-                  className="font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Inicio
-                </Link>
+                </NavLink>
               </li>
 
               <li role="none">
-                <Link
+                <NavLink
                   to="/nosotros"
                   role="menuitem"
-                  className="font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Nosotros
-                </Link>
+                </NavLink>
               </li>
 
               <li role="none">
-                <Link
+                <NavLink
                   to="/solicitudes"
                   role="menuitem"
-                  className="font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Solicitudes
-                </Link>
+                </NavLink>
               </li>
 
               <li role="none">
-                <Link
+                <NavLink
                   to="/doctores"
                   role="menuitem"
-                  className="font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Doctores
-                </Link>
+                </NavLink>
               </li>
 
               <li role="none">
-                <Link
+                <NavLink
                   to="/actividad"
                   role="menuitem"
-                  className="font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Actividad
-                </Link>
+                </NavLink>
               </li>
 
               <li role="none">
-                <Link
+                <NavLink
                   to="/perfil"
                   role="menuitem"
-                  className="font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Perfil
-                </Link>
+                </NavLink>
               </li>
 
               <li role="none">
-                <Link
+                <NavLink
                   to="/login"
                   role="menuitem"
-                  className="border-2 border-teal-200 rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 uppercase"
+                  className={({ isActive }) =>
+                    `font-semibold rounded-full py-1 px-5 hover:scale-105 transition-transform focus:outline-none focus-visible:ring-2 border-2 border-teal-300/60 focus-visible:ring-teal-300 ${isActive ? 'bg-teal-300/60' : ''}`
+                  }
                 >
                   Autenticarse
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </nav>

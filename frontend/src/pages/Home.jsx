@@ -8,6 +8,33 @@ import { useState, useEffect } from 'react';
 
 const Home = () => {
 
+  //cambiar por el arreglo del fatch con el backend
+  const doctores = [
+    {
+      id: 1,
+      nombre: 'Dr. Agapito Resóplez',
+      especialidad: 'Cardiólogo',
+      foto: '/img/doctor1.jpg',
+    },
+    {
+      id: 2,
+      nombre: 'Dra. María Silvia',
+      especialidad: 'Pediatra',
+      foto: '/img/Doctora.jpg',
+    },
+  ];
+
+  const [indice, setIndice]=useState(0);
+
+  useEffect(()=>{
+    const intervalo = setInterval(()=>{
+      setIndice((prev)=>(prev+1)%doctores.length)
+    },3000)
+    return ()=> clearInterval(intervalo)
+  }, [doctores.length])
+
+  const doctorActual = doctores[indice]
+
   const [nombreComentario, setNombreComentario] = useState('');
   const [correoComentario, setCorreoComentario] = useState('');
   const [opinionComentario, setOpinionComentario] = useState('');
@@ -33,16 +60,16 @@ const handleSubmit = (e)=> {
             <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-2 rounded-full">
               <div className="h-36 w-36 lg:h-52 lg:w-52 rounded-full overflow-hidden">
                 <img
-                  src="/img/doctor1.jpg"
-                  alt="Foto del doctor Agapito Resóplez"
+                  src={doctorActual.foto}
+                  alt="Foto del doctor"
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
 
             <figcaption className="text-center mt-1">
-              <h3 className="text-lg font-semibold">Dr. Agapito Resóplez</h3>
-              <h4 className="text-lg">Cardiólogo</h4>
+              <h3 className="text-lg font-semibold">{doctorActual.nombre}</h3>
+              <h4 className="text-lg">{doctorActual.especialidad}</h4>
             </figcaption>
           </figure>
 

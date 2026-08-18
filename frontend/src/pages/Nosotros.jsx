@@ -144,7 +144,7 @@ const Nosotros = () => {
           className="flex flex-col items-center"
           aria-label="Información de contacto"
         >
-          <div className="flex flex-col p-4">
+          <div className="flex flex-col p-4 mb-5">
             <a
               href="https://www.google.com/maps/search/?api=1&query=Calle+5ta+%2310+La+Habana"
               target="_blank"
@@ -227,7 +227,6 @@ const Nosotros = () => {
         </section>
       </main>
 
-      <Footer className="flex-none" />
       {menuAbierto && <MenuModal cerrarMenu={()=> setMenuAbierto(false)}/>}
     </div>
   );

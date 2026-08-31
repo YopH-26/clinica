@@ -24,6 +24,14 @@ const Doctores = () => {
   const [doctorEliminar, setDoctorEliminar] = useState(null);
   const [buscar, setBuscar] = useState('');
 
+  const [isMobile, setIsMobile]=useState(window.innerWidth <768)
+
+  useEffect(()=>{
+    const handleResize = ()=>setIsMobile(window.innerWidth <768)
+    window.addEventListener('resize', handleResize)
+    return()=>window.removeEventListener('resize', handleResize)
+  },[])
+
   useEffect(() => {
     localStorage.setItem('doctores', JSON.stringify(doctores));
   }, [doctores]);
@@ -81,31 +89,10 @@ const Doctores = () => {
             <button
               type="button"
               onClick={agregarOnClick}
-              className="uppercase font-semibold text-base bg-teal-600 rounded-full px-3 py-1 text-white hidden md:inline-block outline-none focus-visible:ring-2  focus-visible:ring-teal-900"
+              className="uppercase font-semibold text-3xl md:text-base bg-teal-600 rounded-full px-3 py-1 text-white outline-none focus-visible:ring-2  focus-visible:ring-teal-900"
               aria-label="Agregar doctor"
             >
-              Agregar doctor
-            </button>
-
-            <button
-              type="button"
-              className="md:hidden bg-teal-600 text-white p-2 rounded-full outline-none focus-visible:ring-2  focus-visible:ring-teal-900"
-              aria-label="Agregar doctor (móvil)"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="12" y1="5" x2="12" y2="19" />
-                <line x1="5" y1="12" x2="19" y2="12" />
-              </svg>
+              {isMobile ? '+' : 'Agregar Doctor'}
             </button>
 
             <form

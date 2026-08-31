@@ -39,14 +39,12 @@ const Home = () => {
   const [correoComentario, setCorreoComentario] = useState('');
   const [opinionComentario, setOpinionComentario] = useState('');
   const [menuAbierto, setMenuAbierto] = useState(false)
-  console.log(opinionComentario,nombreComentario,correoComentario)
 
 const handleSubmit = (e)=> {
   e.preventDefault();
   setNombreComentario('');
   setCorreoComentario('');
   setOpinionComentario('');
-  console.log('enviando')
 }
 
   return (
